@@ -1,6 +1,19 @@
 RewriteEngine on
 
+
+# Custom 404
+ErrorDocument 404 /luminous-site/index.php/page/show_404
+
 RewriteCond %{HTTP_USER_AGENT} TalkTalk\ Virus\ Alerts [NC]
 RewriteRule .* - [F]
+# blocks TalkTalk bot
+order allow,deny
+deny from 62.24.181.134
+deny from 62.24.181.135
+deny from 62.24.222.131
+deny from 62.24.222.132
+deny from 62.24.252.133
+deny from 80.40.134.103
+deny from 80.40.134.104
+allow from all
 
-ErrorDocument 404 /luminous-site/index.php/page/show_404
