@@ -14,13 +14,19 @@ class Page extends MY_Controller {
   }
 
   public function index() {
+    if (strpos($this->uri->uri_string, 'page/index') === false) {
+      // As this is the entrance page, we might just be on '/' or
+      // /index.php, we need to redirect to the full URL to avoid
+      // duplicate pages
+      redirect(site_url('page/index'), 'location', 301);
+      exit(0);
+    }
     $this->pages->set_active('Main');
     $this->load->model('Download_model');
     $model_data = $this->Download_model->get_current();
     $this->_load_header();
     $this->load->view('indexview.php', array('releases'=>$model_data));
     $this->_load_footer();
-//     $this->_load_text_page('index');
   }
   public function download() {
     redirect($this->pages->url('Download'), 'location', 301);
