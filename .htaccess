@@ -1,0 +1,6 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_USER_AGENT} TalkTalk\ Virus\ Alerts [NC]
+RewriteRule .* - [F]
+
+ErrorDocument 404 /luminous-site/index.php/page/show_404

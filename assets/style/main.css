@@ -1,0 +1,351 @@
+body {
+  margin: 0 0;
+  font-family: sans-serif;
+  font-size: 10pt;
+  background-color: #EEEEEE;
+  line-height:165%;
+  padding-bottom: 0px;
+  color: #333;
+}
+
+
+.browser-warning {
+  text-align:center;
+  font-weight:bold;
+  font-size:larger;
+  width: 75%;
+  margin: 1em auto;
+}
+
+div.content {
+  width: 95%;
+  margin: 1em auto;  
+}
+
+div.page {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 65px;
+  padding: 0 2em;
+  padding-bottom: 2em; 
+  border-radius: 1em;
+/*   box-shadow: 5px 0px 20px #ddd; */
+}
+
+div.footer {
+  margin: 2em 0 0;
+  text-align:center;
+  font-size:smaller;
+  border-top:1px solid #bbb;
+  padding: 0 2em;
+  max-height:100%;
+  line-height: normal;
+}
+
+div.menu-bar {
+  text-align: center;
+  border: 1px solid #2E3436;
+  margin: 0 auto;
+  box-shadow: 5px 5px 5px #888;
+  background-color: #555753;
+  border-radius: 0em 0em 0.5em 0.5em;
+  height: 50px;
+  top: 0px;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
+
+div.menu {
+  padding: 0px;
+  margin: 0px;
+  float: right;
+  position: relative;
+  height: 100%;
+}
+div.menu  a {
+  color: white;
+  display: inline-block;
+  padding: 0em 1em;
+  margin: 0 0;
+  line-height: 50px;
+  height: 100%;
+  border-radius: 0 1em 1em 0em;
+  text-shadow: #80B3FF 0px 0px 10px;
+  font-weight: bold;
+}
+div.menu  a.page-active {
+  background-color: black;
+  border-left: 1px solid #bbb;
+}
+div.menu  a:hover {
+  text-decoration: none;
+  text-shadow: none;
+}
+
+
+a {
+  text-decoration: none;
+  color: #00438A;
+  cursor: default;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+
+div.submenu, div.hierarchy {
+  margin-left: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+div.submenu {
+  font-weight: bold;
+}
+
+span.inline-code {
+  background-color: #E7E7E7;
+  padding: 1px 0.25em;
+  font-family: monospace;
+  font-weight: bold;
+  color: #323232;
+  border: 1px solid #888;
+}
+
+
+h1, h2, h3, h4, h5, h6, h7 {
+  text-shadow: #9C9C9C 1px 1px 1px;
+}
+
+div.page > h1 {
+  text-align:center;
+  font-size: 14pt;  
+  color: #2E3436;
+}
+div.page > h2 {
+  font-size: 12pt;
+  color: #00316E;
+  border-bottom: 1px solid #888888;
+  padding-left: 1em;
+  margin-bottom:1em;
+}
+
+div.page > h3 {
+  font-size: 11pt;
+  color: #8C0000;
+  padding-left: 2.5em;
+}
+div.page > h4 {
+  font-size: 10pt;
+  color: #323232;
+}
+
+
+.about {
+  background-color: #555753;
+  border-radius: 2em;
+  border: 1px solid black;
+  box-shadow: 1px 1px 10px #555;
+  padding: 0.5em 2em;
+  color: #D3D7CF;
+  font-size: larger;
+  text-align: center;
+}
+
+.about strong {
+  text-shadow: #FF8080 0px 0px 10px;
+ /* text-decoration: underline; */
+}
+
+
+
+table.languages, table.demos, table.downloads {
+  border-collapse: collapse;
+  width: 50%;
+  margin: 0 auto;
+  text-align:center;
+  line-height: normal;
+}
+table.downloads {
+  width: 90%;
+}
+table.demos {
+  width:80%;
+}
+table.demos td {
+  max-width:500px;
+  overflow: auto;
+}
+table.languages tr , table.demos tr, table.downloads tr{
+  border-bottom: 1px solid #bbb;
+}
+
+tr.header {
+  font-weight: bold;
+  background-color: #bbb;
+  color: #222;
+  border: 1px solid #ccc;
+  border-bottom: 0px;
+  border-radius: 0.25em 0.0em;
+}
+
+tr.sub-header {
+  color: #222;
+/*   font-weight: bold; */
+  border: 1px solid #ddd !important;
+}
+
+
+div.luminous {
+  border: 1px solid #400080;
+  line-height: normal;
+  /* currently applying this only for Moz because Chrome messes up when the
+   * widget scrolls, the corners poke out at the top
+   */
+  -moz-border-radius: 1em;
+  box-shadow: 0px 0px 10px 2px #3A3A3A;
+}
+div.luminous a{
+  border: 0px;  
+}
+div.luminous a.line_number {
+  color: black;
+}
+
+
+.right {
+  text-align:right;
+}
+.center {
+  text-align:center;
+}
+
+.paginator {
+  text-align:right;
+}
+
+.paste {
+  text-align:center;
+}
+.paste table {
+  width: 60%;
+  text-align:left;
+  margin: 0 auto;
+  
+}
+
+.error, .notification {
+  text-align:center;
+  font-weight: bold;
+}
+.error {
+  color: red;
+}
+
+#textlimit {
+  margin: 1em auto;
+  padding: 0.25em 0;
+  max-width: 25%;
+  border: 1px solid #333;
+}
+
+
+/* table of contents */
+.toc {
+  line-height: normal;
+  display: inline-block;
+  float:right;
+  background-color: #eee;
+  padding: 0.5em 1em;
+  border: 2px solid #666;
+  border-radius: 1em;
+}
+.toc .header {
+ font-weight:bold;
+ border-bottom: 1px solid black;
+}
+.toc .toc_line {
+  margin-left: 1em;
+}
+.toc a {
+  border: 0px;
+}
+.toc span {
+  display: inline-block;
+}
+
+.news {
+  padding: 0 1em;
+  line-height: normal;
+}
+.news .title {
+  font-weight: bold;
+}
+.news .date {
+}
+.news .header {
+  border: 1px solid #ccc;
+  background-color: #E1E1E1;
+}
+.news .content {
+  width: 98%;
+  margin: 0.25em;
+}
+
+
+
+.download-badge {
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+   text-align:center;
+  background-color: #555753;
+  border-radius: 1em 0em;
+  border: 2px outset #6193CF;
+  position: relative;
+  font-weight: bold;
+}
+.download-badge a {
+  color: white;
+  text-decoration: none;
+}
+.download-badge img {
+  float: left;
+  clear: both;
+  left: 10%;
+  top: 5px;
+  position: relative;
+  border: 0px;
+}
+
+.help-hint {
+  color: #888;
+  cursor:help;
+}
+.help-hint:hover {
+  color: #333;
+}
+.notify_area {
+  line-height: normal;
+  color: #eee !important;
+  z-index: 101;
+}
+.notify_area .title {
+  font-weight: bold;
+}
+
+
+
+
+input[type=text] {
+  border: 1px solid black;
+  border-radius: 0.5em;
+}
+select,option {
+  text-align: center;
+}
+label {
+  font-weight: bold;
+}
+

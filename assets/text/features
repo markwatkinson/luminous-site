@@ -1,0 +1,18 @@
+= Features =
+
+==Luminous aims to be a modern syntax highlighter for PHP==
+
+  * Luminous is powerful: it uses lexical scanners to highlight source code, which means syntax highlighting is more accurate in complex cases than many simplified highlighters.
+  * It's powerful enough to do clever things like:
+    # Handle mixed [demo/show/16 PHP/HTML/CSS/JavaScript] and [demo/show/17 Ruby on Rails-like] language nesting,
+    # [demo/show/4 highlight source code inside diff/patch files],
+    # correctly highlight [demo/show/10 Ruby's string interpolation and balanced delimiters].
+  * Highlights a range of [page/languages common languages].
+  * The calling API is small and neat, so it's easy to use.
+  * Includes transparent caching so highlighting incurs only a one-time overhead.
+  * Comes with 6 colour themes, yes, six! And it's easy to write your own with CSS.
+  * Outputs to HTML and LaTeX:
+    * HTML output is HTML4, XHTML strict/loose and HTML5 valid.
+    * LaTeX output is themed by CSS. Luminous uses its own CSS lexer to tokenize and then parse theming stylesheets.
+  * It's well [docs/show/index documented].
+  * Luminous has a large test database and is frequently tested against pseudo-random input, so you can feel safe using it.

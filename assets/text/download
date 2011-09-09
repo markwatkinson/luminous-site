@@ -1,0 +1,20 @@
+=Download Luminous=
+
+==Stable Version==
+
+The latest stable release is 0.6.0:
+  * [https://github.com/markwatkinson/luminous/zipball/v0.6.0 zip]
+  * [https://github.com/markwatkinson/luminous/tarball/v0.6.0 tar.gz]
+
+== Development Version ==
+
+You may prefer to use the current development version. This version is likely to be newer than the stable release, but it may contain more bugs (and it may contain fewer bugs). The master branch _should_ be both stable and release-ready at any point in time, so please feel free to use it, but try reverting to the stable version if you find something is broken (a bug report might be nice too).
+
+  * [https://github.com/markwatkinson/luminous/zipball/master zip]
+  * [https://github.com/markwatkinson/luminous/tarball/master tar.gz]
+
+or clone: `$ git clone git://github.com/markwatkinson/luminous.git`
+
+== What now? ==
+
+Head over to the [/docs/show/index quick usage documentation]

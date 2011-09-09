@@ -1,0 +1,59 @@
+=FAQ=
+
+\contents 2
+
+
+==General==
+
+=== What is Luminous? ===
+
+Luminous is a machine which converts source code into source code.
+
+It's a syntax highlighter, or more accurately, a syntax highlighting library. It receives source code and outputs a string of HTML (or LaTeX) which describes a colourful, highlighted version of the source code.
+
+Luminous supports command line invocation (so it can be called from the OS environment, like any other program), but it is aimed towards highlighting source code online. The idea is that source code is stored in a plain format (which makes it easy to edit later), and as the web-page is loaded, the plain source code is converted to syntax highlighted code for the visitor.
+
+In theory this all happens in real time, but in reality, Luminous internally caches its highlights, so the actual highlighting (which can be computationally expensive, relatively speaking) is only performed the first time the page is loaded.
+
+It provides a small API to be called as a PHP library, or it can be called on the command line from non-PHP environments.
+
+It's written in PHP because PHP is everywhere, but there's only really one other production quality syntax highlighter for PHP, and it can be difficult or impossible to use non-PHP highlighters on some hosts.
+
+=== Requirements ===
+
+Luminous requires PHP 5.2 or later, and should work on Unix and Windows servers (but I don't develop on or for Windows machines, so if this is broken, please report it).
+
+== Development ==
+
+Development takes place on GitHub:
+
+  * [!https://github.com/markwatkinson/luminous Source/Repository]
+  * [!https://github.com/markwatkinson/luminous/issues Issue tracker]
+
+For bug reports, feature requests and patches thereof, it is preferred that you use the relevant functionality of GitHub (issue tracker for bugs/feature requests, fork/pull request for patches), but if you don't have an account, you can use email (mark at asgaard co uk).
+
+=== How can I add support for... ===
+
+==== ...a new language? ====
+
+See the documentation page on [docs/show/Writing-a-language-scanner writing a scanner].
+
+If you would like to see this included in Luminous then please feel free to send it to me, although be warned that Luminous's scanners are (supposed) to be pretty good and it will only be included if it highlights code pretty well, for example, if your language supports nesting comments or infinitely nestable string interpolation, then your scanner should highlight that correctly.
+
+==== ...a new output format? ====
+
+See the documentation page on [docs/show/Writing-a-formatter writing a formatter].
+
+==== ...a new colour theme? ====
+
+Themes are written in CSS. The CSS classes relate directly to highlighting token names, but there isn't really any definite specification on what token names are generated; the closest to this is probably best defined as 'anything in the luminous_light.css theme'. Therefore the best way to create a new theme is to copy luminous_light.css and start editing it. Other themeing files tend to omit some rules.
+
+Once done, make sure your theme is under the style/ directory and you can reference it in the normal way.
+
+== Miscellaneous ==
+
+=== What browsers are supported? ===
+
+Luminous supports all modern browsers, including IE8+, Firefox 3.5/4, webkit (Chrome, Safari), Opera, and Konqeror. IE7 and below are not supported but may work anyway. In reality, the visitors to whom your code snippets mean anything are unlikely to be using old IE versions.
+
+

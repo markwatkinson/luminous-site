@@ -1,0 +1,15 @@
+*~
+*.swp
+*.orig
+.directory
+user_guide/
+
+/application/libraries/simplepie/cache
+
+/assets/luminous
+
+assets/download_log
+assets/downloads
+
+# Very important - contains passwords!
+/application/config/database.inc.php
