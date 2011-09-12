@@ -64,22 +64,6 @@ class MY_Controller extends CI_Controller {
     $this->_load_footer();
   }
 
-
-  protected function load_js($script, $exact=false) {
-    $script_dir = self::ASSETS_DIR . 'script/';
-    if (!$exact) {
-      $matches = glob($script_dir . "/*$script*.js");
-      if (empty($matches)) return false;
-      foreach($matches as $m) {
-        $this->scripts[] =  substr($m, strlen($script_dir)+1);
-      }
-    } else {
-      if (file_exists($script_dir . '/' . $script))
-        $this->scripts[] = $script;
-      else return false;
-    }
-  }
-
   public function assets_url($asset) {
     return $this->assets['url'] . rtrim(htmlentities($asset), '/');
   }
