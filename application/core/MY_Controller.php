@@ -28,9 +28,11 @@ class MY_Controller extends CI_Controller {
     $this->pages->add_page('FAQ', 'page/faq');
     $this->pages->add_page('Documentation', 'docs/show/index');
 
-    $this->load_js('jquery-1.6');
-    $this->load_js('jknotify');
-    $this->load_js('visuals');
+    $this->load->library('ci-script-loader/scripts');
+    $this->scripts->js('jquery-1.6');
+    $this->scripts->js('jknotify');
+    $this->scripts->js('visuals');
+    $this->scripts->css('main.css');
   }
 
   public function _remap($method, $params = array()) {

@@ -6,10 +6,7 @@
     <meta name='description' content='A modern, powerful, styleable and multi-language syntax highlighter for PHP'>
   <?php endif; ?>
   <title> Luminous - A PHP Source Code Syntax Highlighter - <?= htmlentities($this->pages->active_name()); ?></title>
-
-  <?php foreach($this->scripts as $s): ?> 
-  <script src='<?=assets_url("/script/$s")?>'></script>
-  <?php endforeach; ?>
+  <?= $this->scripts->html(); ?>
   <?php if ($this->input->get('luminous_debug')): ?>
     <script type='text/javascript' src='<?=assets_url('/luminous/tests/lineheight.js')?>'></script>
   <?php endif; ?>
