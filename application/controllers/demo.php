@@ -19,7 +19,7 @@ class Demo extends MY_Controller {
     if (!$this->session->userdata('theme')) {
       $this->session->set_userdata('theme', 'zenophilia.css');
     }
-    $this->load_js('bytelimit');
+    $this->scripts->js('bytelimit');
   }
 
   protected function _load_header($data=array()) {
