@@ -13,3 +13,4 @@ assets/downloads
 
 # Very important - contains passwords!
 /application/config/database.inc.php
+/application/config/config.inc.php
