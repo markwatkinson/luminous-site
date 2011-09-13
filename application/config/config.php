@@ -226,7 +226,7 @@ $config['cache_path'] = '';
 */
 
 $config['encryption_key'] = 'yFPlZtlh9krK/fK6p3tDYn0ChkA5We2rESki3ACz2s=';
-include('config.inc.php'); // overwrites the above
+include(dirname(__FILE__) . '/config.inc.php'); // overwrites the above
 
 /*
 |--------------------------------------------------------------------------
