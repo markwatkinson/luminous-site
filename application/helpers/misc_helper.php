@@ -19,7 +19,7 @@ function format_feed($url, $n=5) {
     // limits to n/2 words because every second element is whitespace
     $words = array_slice($words, 0, 80);
     $desc = implode('', $words);
-    $date = $item->get_date('j/m/y');
+    $date = $item->get_date('jS M Y');
     $title = (strip_tags($item->get_title()));
     $link = $item->get_permalink();
     $s .= <<<EOF
