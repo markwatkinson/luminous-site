@@ -61,7 +61,7 @@ You've downloaded a distribution: what now? Visit the <a href='<?= site_url('/do
 <?php foreach($releases as $i=>$release): 
   if ($i === 0) continue; ?>
   <tr class='sub-header'>
-    <td><?= $release['release_number']?> - <?= $release['release_date'] ?></td>
+    <td><?= $release['release_number']?></td>
     <td></td>
     <td></td>
     <td></td>
@@ -70,7 +70,7 @@ You've downloaded a distribution: what now? Visit the <a href='<?= site_url('/do
 
 <?php $files = sortfiles($release);
 foreach($files as $i=>$f): ?>
-  <tr> 
+  <tr>
     <td></td>
     <td><?= $f['format']?></td>
     <td> <a href='<?=href($f)?>'><?=$f['filename']?></a></td> 
