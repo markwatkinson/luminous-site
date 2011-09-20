@@ -349,3 +349,34 @@ label {
   font-weight: bold;
 }
 
+
+
+dl, dt, dd{
+  padding: 0;
+  margin: 0;
+
+}
+
+dl {
+  width:90%;
+  overflow:hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+dt {
+  font-weight: bold;
+  font-size: larger;
+  float: left;
+  clear: left;
+  width: 25%;
+  padding-left: 1em;
+  border-left: 1px solid #555;
+  
+}
+
+dd {
+  border-left: 1px solid #bbb;
+  padding-left: 1em;
+  width: 60%;
+  float: left;
+}
