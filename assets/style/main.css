@@ -362,6 +362,7 @@ dl {
   overflow:hidden;
   margin-left: auto;
   margin-right: auto;
+  counter-reset: term;
 }
 dt {
   font-weight: bold;
@@ -372,6 +373,13 @@ dt {
   padding-left: 1em;
   border-left: 1px solid #555;
   
+}
+dl.languages dt:before  {
+  counter-increment: term;
+  content: counter(term);
+  margin-right: 1em;
+  font-size: x-small;
+  font-weight: normal;
 }
 
 dd {
