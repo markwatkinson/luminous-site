@@ -2,8 +2,6 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <!-- hi, IE, please render my page properly //-->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <?php if ($this->pages->active_name() === 'Main'): ?>
     <meta name='description' content='A modern, powerful, styleable and multi-language syntax highlighter for PHP'>
   <?php endif; ?>
