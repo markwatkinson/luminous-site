@@ -29,10 +29,13 @@ class MY_Controller extends CI_Controller {
     $this->pages->add_page('Documentation', 'docs/show/index');
 
     $this->load->library('ci-script-loader/scripts');
+    $this->scripts->set_dir('js', './assets/script/');
+    $this->scripts->set_dir('css', './assets/style/');
     $this->scripts->js('jquery-1.6');
     $this->scripts->js('jknotify');
-    $this->scripts->js('visuals');
-    $this->scripts->css('main.css');
+    assert ($this->scripts->js('visuals') );
+    assert ($this->scripts->css('main.css', true) );
+    assert ($this->scripts->css('buttons.css', true) );
   }
 
   public function _remap($method, $params = array()) {

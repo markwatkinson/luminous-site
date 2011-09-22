@@ -34,3 +34,17 @@ EOF;
 }
 
 
+
+function button($text, $href, $class='', $image='', $alt='') {
+  $button = <<<EOF
+<a href='$href' class='button $class'>
+    <span> %s $text </span>
+</a>
+
+EOF;
+  $button = sprintf($button,
+    $image? "<img src='$image' alt='$alt'>" : ''
+  );
+  return $button;
+}
+

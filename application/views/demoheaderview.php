@@ -1,5 +1,4 @@
 <div class='submenu'>
-<span> <a href='<?=site_url('/demo/')?>'>Browse saved</a> </span>
-|
-<span> <a href='<?=site_url('/demo/paste')?>'>Try it yourself</a> </span>
+  <?= button('Browse saved code', site_url('/demo/'), '', assets_url('/img/repository.png'), ''); ?>
+  <?= button('Try it yourself!', site_url('/demo/paste'), '', assets_url('/img/format-fill-color.png'),  ''); ?>
 </div>

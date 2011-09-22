@@ -13,15 +13,25 @@ if (!empty($releases)) {
   $version = $newest['release_number'];
   $url = site_url("download/get/luminous-v$version.zip");
   ?>
-
-<div class='download-badge'>
-  <a href='<?=$url?>'>
-  <img src='<?=assets_url('img/download.png')?>' alt='download'>
-    Download Luminous
-    <br>
-    v<?= $version ?> (zip)
-  </a>
+<p>
+<div class='index-button-holder'>
+  <?= button('Download', $url, 'index-button', assets_url('img/download.png'),
+    'Download version ' . $version); ?>
+  <?= button('Documentation', site_url('/docs/show/index'), 'index-button alt',
+    assets_url('img/system-help32.png'), 'Documentation') ?>
 </div>
+<script>
+// IE doesn't render the '&#8658' right arrow properly so I am adding it
+// here with a check
+// thanks jQuery for deprecating $.browser
+if (navigator.appName != 'Microsoft Internet Explorer') {
+  $(document).ready(function() {
+    $('.button span').each(function() {
+      $(this).html( $(this).html() + '&#8658;' );
+    });
+  });
+}
+</script>
 <?php
 }
 ?>

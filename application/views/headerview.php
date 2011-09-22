@@ -2,6 +2,8 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!-- hi, IE, please render my page properly //-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <?php if ($this->pages->active_name() === 'Main'): ?>
     <meta name='description' content='A modern, powerful, styleable and multi-language syntax highlighter for PHP'>
   <?php endif; ?>
@@ -10,7 +12,6 @@
   <?php if ($this->input->get('luminous_debug')): ?>
     <script type='text/javascript' src='<?=assets_url('/luminous/tests/lineheight.js')?>'></script>
   <?php endif; ?>
-  <link rel='stylesheet' href='<?=assets_url('/style/main.css')?>'>
   <link rel='stylesheet' href='<?=assets_url('/luminous/style/luminous.css')?>'>
   <link rel='stylesheet' id='luminous-theme' href='<?=
     assets_url('/luminous/style/' .  (isset($theme)?  $theme : 'zenophilia.css')) ?>'>
@@ -30,6 +31,14 @@
     })();
   </script>
 <?php endif;?>
+
+  <!-- IE9 breaks with the inline block/float/border radius
+  combo for some reason which makes our buttons look ugly sometimes //-->
+  <!--[if IE]>
+  <style type="text/css">
+    .button { border-radius: 0; }
+  </style>
+  <![endif]-->
 </head>
 <body>
   <div class='menu-bar'>
