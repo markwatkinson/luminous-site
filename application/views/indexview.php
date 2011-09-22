@@ -17,8 +17,8 @@ if (!empty($releases)) {
 <div class='index-button-holder'>
   <?= button('Download', $url, 'index-button', assets_url('img/download.png'),
     'Download version ' . $version); ?>
-  <?= button('Documentation', site_url('/docs/show/index'), 'index-button alt',
-    assets_url('img/system-help32.png'), 'Documentation') ?>
+  <?= button('Get Started', site_url('/docs/show/index'), 'index-button alt',
+    assets_url('img/system-help32.png'), 'Get Started') ?>
 </div>
 <script>
 // IE doesn't render the '&#8658' right arrow properly so I am adding it
