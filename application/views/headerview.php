@@ -13,7 +13,7 @@
   <link rel='stylesheet' href='<?=assets_url('/luminous/style/luminous.css')?>'>
   <link rel='stylesheet' id='luminous-theme' href='<?=
     assets_url('/luminous/style/' .  (isset($theme)?  $theme : 'zenophilia.css')) ?>'>
-    
+  <script type='text/javascript' src='<?=assets_url('/luminous/client/luminous.js')?>'></script>
 <?php if (strpos(base_url(), 'localhost') === false): ?>
   <!-- Google analytics -->
   <script type="text/javascript">
