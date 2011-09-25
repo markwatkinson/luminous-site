@@ -46,6 +46,7 @@ $(document).ready(function() {
     $('.code_container').css('max-height', expanded? '500px' : 'none');
     $(this).text(expanded? 'Expand' : 'Collapse');
     $(this).data('expanded', !expanded);
+    return false;
   });
   $('.bar').append($a);
 });
