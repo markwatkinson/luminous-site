@@ -1,28 +1,37 @@
-<?php if ($error !== null): ?>
-<div class='error'>Error: <?=$error?></div>
+<?php if (isset($errors) and !empty($errors)): ?>
+  <div class='error'><p>Errors were encounted:
+  <ul>
+    <?php foreach($errors as $e): ?>
+    <li>  <?= $e ?> </li>
+    <?php endforeach; ?>
+  </ul>
+  </div>
 <?php endif;?>
 <div class='paste'>
-  <form method='post' action='<?= $_SERVER['PHP_SELF'] ?>' id='input'>
+  <form method='post' action='<?= site_url('demo/paste') ?>' id='input'>
+    <?php if ($demo->id !== null): ?>
+      <input type='hidden' name='id' value='<?=$demo->id?>'>
+    <?php endif; ?>
     <table>
     <tr>
       <td><label for='submitter_'>Your name</label></td>
       <td><input id='submitter_' name='submitter' maxlength='20' type='text' 
-        style='width:10em' value='<?= htmlentities($submitter) ?>'> </td>
+        style='width:10em' value='<?= htmlentities($demo->submitter) ?>'> </td>
     </tr>
     <tr>
       <td><label for='description_'>Description</label> (optional)</td>
       <td><input id='description_' name='description' maxlength='50' 
         type='text' style='width:20em' 
-        value='<?= htmlentities($description) ?>'></td>
+        value='<?= htmlentities($demo->description) ?>'></td>
     </tr>
     <tr>
       <td><label for='lang_'>Language</label></td>
-      <td><select id='lang_' name='lang'>
+      <td><select id='lang_' name='language'>
     <?php foreach(luminous::scanners() as $lang=>$codes) {
       $lang = htmlentities($lang);
       echo sprintf("<option value='%s'%s>%s</option>\n",
         $lang,
-        ($lang === $language)? ' selected' : '',
+        ($lang === $demo->scanner)? ' selected' : '',
         $lang);
       } ?>
     </select> </td>
@@ -40,18 +49,22 @@
     </tr>
     </table>
     
-    Code input is limited to <?= $max ?> bytes (<?= $max/1024?>KiB) because this
+    Code input is limited to <?= $this->CODE_MAX ?> bytes (<?= $this->CODE_MAX/1024?>KiB) because this
     is inexpensive web hosting and it would be nice to keep it that way.
     <!-- set this to 0/max so the javascript can pick it up on-load //-->
-    <div id='textlimit'>0/<?=$max?></div>
-    <textarea rows=15 cols=75 name='code' id='code'><?=
-      htmlentities(utf8_decode($code)) ?></textarea>
+    <div id='textlimit'>0/<?=$this->CODE_MAX?></div>
+    <textarea rows=20 cols=90 name='raw' id='code'><?=
+      htmlentities(utf8_decode($demo->raw)) ?></textarea>
     <br/>
 
     <label for='save_'>Save</label> (your code will be visible to others*):
-    <input type='checkbox' id='save_' name='save' <?= $save? 'checked' : '';?>>
+    <!-- this just makes things easier //-->
+    <input type='hidden' name='post' value='true'>
     
-    <br/>    
+    <input type='checkbox' id='save_' name='save'
+      <?= ($this->input->post('post') && !$this->input->post('save'))? '' : 'checked';?>>
+    
+    <br/>
     <input type='submit'>
   </form>
 </div>
