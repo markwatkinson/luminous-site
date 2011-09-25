@@ -37,6 +37,12 @@ if (navigator.appName != 'Microsoft Internet Explorer') {
 ?>
 
 <h2>News</h2>
+<div class='rss'>
+  <a href='http://blog.luminous.asgaard.co.uk/feed/'>
+    <img src='<?=assets_url('/img/rss.png')?>' alt='RSS'>
+    RSS
+  </a>
+</div>
 <?= format_feed('http://blog.luminous.asgaard.co.uk/feed/', 2); ?>
 
 <h2>Example/Demo</h2>

@@ -370,3 +370,15 @@ dd {
   float: left;
 }
 
+
+.rss {
+  line-height: 16px;
+  text-align:right;
+  margin-bottom: 2px;
+}
+.rss img {
+  vertical-align: top;
+}
+.rss a:hover {
+  text-decoration: none;
+}

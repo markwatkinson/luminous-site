@@ -14,6 +14,11 @@
   <link rel='stylesheet' id='luminous-theme' href='<?=
     assets_url('/luminous/style/' .  (isset($theme)?  $theme : 'zenophilia.css')) ?>'>
   <script type='text/javascript' src='<?=assets_url('/luminous/client/luminous.js')?>'></script>
+
+  <!-- Wordpress RSS feed //-->
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+      href="http://blog.luminous.asgaard.co.uk/feed/">
+   
 <?php if (strpos(base_url(), 'localhost') === false): ?>
   <!-- Google analytics -->
   <script type="text/javascript">
