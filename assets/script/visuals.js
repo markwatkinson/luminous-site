@@ -18,11 +18,10 @@
     // theme switcher for Luminous. Display if there are any luminous elements
     // on the page.
     if ($('.luminous').length) {
+      var fetched = false, themes = {};
       var theme_switcher = $('<a>').text('Switch theme?').click(function() {
 
-        var fetched = false,
-             themes = {},
-            current = $('#luminous-theme').attr('href').replace(/.*\//, '');
+        var current = $('#luminous-theme').attr('href').replace(/.*\//, '');
         var show_switcher = function() {
           $.jKnotifyUi().jK.title('Change Theme')
                         .jK.selectInput('Switch to', 'theme', themes, current, true)
