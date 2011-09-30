@@ -17,7 +17,7 @@ class Demo extends MY_Controller {
       $this->session->set_userdata('theme', $t);
     }
     if (!$this->session->userdata('theme')) {
-      $this->session->set_userdata('theme', 'zenophilia.css');
+      $this->session->set_userdata('theme', $this->default_theme);
     }
     $this->scripts->js('bytelimit');
   }

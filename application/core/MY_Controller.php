@@ -8,6 +8,7 @@ class Exception404 extends MY_Exception {
 class MY_Controller extends CI_Controller {
   
   public $scripts = array();
+  public $default_theme = 'zenophilia.css';
 
   const ASSETS_DIR = './assets/';
   
@@ -36,6 +37,8 @@ class MY_Controller extends CI_Controller {
     assert ($this->scripts->js('visuals') );
     assert ($this->scripts->css('main.css', true) );
     assert ($this->scripts->css('buttons.css', true) );
+
+    
   }
 
   public function _remap($method, $params = array()) {

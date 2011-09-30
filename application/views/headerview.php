@@ -12,7 +12,7 @@
   <?php endif; ?>
   <link rel='stylesheet' href='<?=assets_url('/luminous/style/luminous.css')?>'>
   <link rel='stylesheet' id='luminous-theme' href='<?=
-    assets_url('/luminous/style/' .  (isset($theme)?  $theme : 'zenophilia.css')) ?>'>
+    assets_url('/luminous/style/' .  (isset($theme)?  $theme : $this->default_theme)) ?>'>
   <script type='text/javascript' src='<?=assets_url('/luminous/client/luminous.js')?>'></script>
 
   <!-- Wordpress RSS feed //-->
