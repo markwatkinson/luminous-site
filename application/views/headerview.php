@@ -6,13 +6,16 @@
     <meta name='description' content='A modern, powerful, styleable and multi-language syntax highlighter for PHP'>
   <?php endif; ?>
   <title> Luminous - A PHP Source Code Syntax Highlighter - <?= htmlentities($this->pages->active_name()); ?></title>
+  <script>
+  var BASE_URL = '<?=base_url()?>';
+  </script>
   <?= $this->scripts->html(); ?>
   <?php if ($this->input->get('luminous_debug')): ?>
     <script type='text/javascript' src='<?=assets_url('/luminous/tests/lineheight.js')?>'></script>
   <?php endif; ?>
   <link rel='stylesheet' href='<?=assets_url('/luminous/style/luminous.css')?>'>
   <link rel='stylesheet' id='luminous-theme' href='<?=
-    assets_url('/luminous/style/' .  (isset($theme)?  $theme : $this->default_theme)) ?>'>
+    assets_url('/luminous/style/' .  $this->session->userdata('theme'))?>'>
   <script type='text/javascript' src='<?=assets_url('/luminous/client/luminous.js')?>'></script>
 
   <!-- Wordpress RSS feed //-->
@@ -55,16 +58,14 @@
   </div>
   <div class='content'>
 
+    <div class='page'>
     <!--[if lt IE 8]>
-      <div class='browser-warning'>
+      <div class='browser-warning' style='margin-top:65px'>
         You appear to be using a very old browser, which may not be capable of
         rendering everything on this site correctly.
-        To fix this try using a free open source browser like
+        To fix this try using a free browser like
         <a href='http://www.mozilla.com/'>Firefox</a>, or
         <a href='http://www.google.com/chrome'>Google Chrome</a>
       </div>
-    <![endif]-->
-
-
-    <div class='page'>
+    <![endif]-->    
     <!-- end header view  //-->

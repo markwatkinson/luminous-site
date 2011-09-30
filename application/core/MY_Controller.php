@@ -34,10 +34,16 @@ class MY_Controller extends CI_Controller {
     $this->scripts->set_dir('css', 'assets/style/');
     $this->scripts->js('jquery-1.6');
     $this->scripts->js('jknotify');
-    assert ($this->scripts->js('visuals') );
-    assert ($this->scripts->css('main.css', true) );
-    assert ($this->scripts->css('buttons.css', true) );
+    $this->scripts->js('visuals');
+    $this->scripts->css('main.css', true);
+    $this->scripts->css('buttons.css', true);
 
+    // set the default theme
+    if ($this->session->userdata('theme') === false ||
+        !in_array($this->session->userdata('theme'), luminous::themes())
+      ) {
+      $this->session->set_userdata('theme', $this->default_theme);
+    }
     
   }
 
