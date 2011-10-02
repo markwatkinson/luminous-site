@@ -1,6 +1,5 @@
 <h1>Embedding</h1>
 
-
 <p>
 An experimental API is provided to allow embedding the code snippets posted
 here into other pages via JavaScript. It is experimental in the sense that
@@ -18,7 +17,7 @@ and it is up to the function exactly what is performed. To use JSONP, append
 To call the API, use the following url:
 <pre>http://luminous.asgaard.co.uk/index.php/demo/embed/:id/:theme.css</pre>
 
-or JSONP:
+or JSONP (where you must first define a :something function):
 <pre>&lt;script type="text/javascript"
   src="http://luminous.asgaard.co.uk/index.php/demo/embed/:id/:theme.css?callback=:something"&gt;
 &lt;/script&gt;</pre>
