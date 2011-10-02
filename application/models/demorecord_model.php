@@ -18,6 +18,7 @@ class Demorecord_model extends CI_Model {
   public $description = ''; 
   public $raw = '';
   public $highlighted = '';
+  public $editable = false;
 
   public function Demorecord_model() {
     parent::__construct();
@@ -40,7 +41,8 @@ class Demorecord_model extends CI_Model {
       'submitter' => $this->submitter,
       'description' => $this->description,
       'raw' => $this->raw,
-      'highlighted' => $this->highlighted
+      'highlighted' => $this->highlighted,
+      'editable' => $this->editable,
     );
   }
 

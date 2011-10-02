@@ -23,13 +23,41 @@
   </form>
 </noscript>
 
-<div class='bar' style='text-align: center'> 
+<div class='bar' style='text-align: center'>
+<a href='#' id='embed'>Embed</a>
+<?php if ($demo->editable): ?>
 <a href='<?=site_url('demo/edit/' . $demo->id)?>' style='margin:0 2em'>Edit</a>
+<?endif?>
 </div>
 
 <script>
-// quick way to expand the Luminous widget with JS
 $(document).ready(function() {
+  // generate embed code
+  $('#embed').click(function() {
+    // TODO move this CSS into a stylesheet
+    var jsonp = '<script src="<?=site_url("/demo/embed/{$demo->id}/" . $this->session->userdata('theme'))?>?callback=CALLBACK" type="text/javascript"><\/script>';
+    var json = '<?=site_url("/demo/embed/{$demo->id}/" . $this->session->userdata('theme'))?>';
+    var css = {'overflow': 'auto',
+//       'font-weight' : 'bold',
+      'margin' : '0 0'};
+    var html = $('<div>');
+
+    html.append($('<span>Embed using JSON</span>'));
+    html.append($('<pre>').text(json).css(css));
+    html.append($('<br>'));
+    html.append($('<span>Embed using JSONP:</span>'));
+    html.append($('<pre>').text(jsonp).css(css));
+    
+    html.append(
+      $('<div style="text-align:center">').append(
+        $('<a href="<?=site_url('/demo/embed/')?>">What does this mean?</a>').css('color', '#BFD9FF')
+      )
+    );
+    $.jKnotify(html, {title: 'Embed Code', passive: false});
+    return false;
+  });
+  
+  // quick way to expand the Luminous widget with JS  
   if ($('.code_container').height() < parseInt($('.code_container').css('max-height')))
     return;
   var $a = $('<a href="#">Expand</a>').data('expanded', false).click(function(){

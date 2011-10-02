@@ -1,5 +1,6 @@
 (function($) {
   $(document).ready(function() {
+    $('.page').css('display', 'none').fadeIn('fast');
     $('a:not(.button)').hover(
       function() {$(this).stop().animate({'opacity' : '0.7'});}, 
       function() {$(this).stop().animate({'opacity' : '1'});}

@@ -110,7 +110,7 @@ class Demo extends MY_Controller {
 
   public function _do_paste_or_edit_post() {
     $errors = array();
-    $data = array();
+    $data = array(); //user submitted data
     foreach(array('submitter', 'description', 'language', 'raw') as $field) {
       $post = $this->input->post($field);
       if ($post === false) {
@@ -121,10 +121,16 @@ class Demo extends MY_Controller {
       }
     }
     $id = $this->input->post('id');
+    
     if ($id !== false) {
+      // edited submission
       $data['id'] = $id;
       // this will throw a 404 if the ID does not exist
       $this->Demorecord_model->read($id);
+    } else {
+      // we only check for the editable input if it's a new submission
+      // otherwise people could set previous editables to non-editable
+      $data['editable'] = (bool)$this->input->post('editable');
     }
 
     $data['submitter'] = trim($data['submitter']);
@@ -181,6 +187,10 @@ class Demo extends MY_Controller {
     if (!is_numeric($id)) throw new Exception404();
     $this->load->model('Demorecord_model');
     $this->Demorecord_model->read($id);
+    if (!$this->Demorecord_model->editable) {
+      // I can't let you do that, Dave
+      throw new HTTPException(403);
+    }
     $this->_do_paste_or_edit();
   }
 
@@ -196,6 +206,73 @@ class Demo extends MY_Controller {
         $this->Demorecord_model->scanner = luminous_decode_language($language);
       }
       $this->_do_paste_or_edit();
+    }
+  }
+
+  public function embed($id=false, $theme=false) {
+    if ($id === false) {
+      // we don't want the overloaded version
+      parent::_load_header();
+      $this->load->view('demoembedview.php');
+      $this->_load_footer();
+      return;
+    }
+    $this->load->model('Demorecord_model');
+    $this->Demorecord_model->read($id);
+    $callback = $this->input->get('callback');
+    $json_ = array(
+      'code' => $this->Demorecord_model->highlighted,
+      'layout' => assets_url('luminous/style/luminous.css'),
+      'theme' => ($theme && in_array($theme, luminous::themes()))?
+        assets_url('luminous/style/' . $theme)
+        : '',
+      'language' => $this->Demorecord_model->scanner
+    );
+    if ($callback) {
+      header('Content-type: text/javascript');
+      echo $callback . '(' . json_encode($json_) . ');';
+    } else {
+      header('Content-type: application/json');
+      echo json_encode($json_);
+    }
+    
+
+  }
+
+  private function _test_embed($id, $theme) {
+//     $this->_load_header();
+    $url = site_url("demo/embed/$id/$theme");
+    $f = <<<EOF
+<!doctype html>
+<html>
+  <head>
+    <script type='text/javascript' src='%s'></script>
+    <script>
+      $(document).ready(function() {
+      $.getJSON('$url',
+        function(data) {
+          $('head').append($('<link rel="stylesheet" type="text/css">').attr('href', data.layout));
+          $('head').append($('<link rel="stylesheet" type="text/css">').attr('href', data.theme));
+          $('body').append('Language: ' + data.language);
+          $('body').append('<br/>Path to theme: ' + data.theme);
+          $('body').append($(data.code));
+        });
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+EOF;
+  $f = sprintf($f, assets_url('/script/jquery-1.6.2.min.js'));
+    $this->output->append_output($f);
+//     $this->_load_footer();
+  }
+
+  public function test($arg0) {
+    $args = func_get_args();
+    if ($args[0] === 'embed') {
+      $this->_test_embed($args[1], isset($args[2])? $args[2] : $this->session->userdata('theme'));
     }
   }
   

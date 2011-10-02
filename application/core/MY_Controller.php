@@ -2,7 +2,21 @@
 
 class MY_Exception extends Exception {
 }
-class Exception404 extends MY_Exception {
+class HTTPException extends MY_Exception {
+  public $code;
+  public function HTTPException($code) {
+    $this->code = $code;
+  }
+}
+
+class Exception404 extends HTTPException {
+  /** @deprecated
+    * this class is a leftover, it shouldn't be used anymore
+    * use HTTPException instead
+    */
+  public function Exception404() {
+    parent::__construct(404);
+  }
 }
 
 class MY_Controller extends CI_Controller {
@@ -50,10 +64,23 @@ class MY_Controller extends CI_Controller {
   public function _remap($method, $params = array()) {
     try {
       if (!method_exists($this, $method))
-        throw new Exception404();
+        throw new HTTPException(404);
       return call_user_func_array(array($this, $method), $params);
-    } catch(Exception404 $e) {
-      $this->show_404();
+    } catch(HTTPException $e) {
+      if ($e->code === 404) {
+        $this->show_404();
+      } else {
+        $this->output->set_output('');
+        $this->output->set_status_header($e->code);
+        $this->_load_header();
+        // TODO work this into a view
+        $this->output->append_output("
+        <h1>Oops!</h1>
+        Sorry, looks like you made a bad request or something just went wrong.
+        <br>
+        Status code: {$e->code}");
+        $this->_load_footer();
+      }
     }
   }
 

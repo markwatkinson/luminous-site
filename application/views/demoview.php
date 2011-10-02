@@ -43,7 +43,7 @@
       <td><select name='theme' id='theme_'>
       <?php foreach(Luminous::themes() as $t): ?>
       <option value='<?= $t;?>'<?= ($t === $theme)? ' selected' : '' ?>><?=
-        preg_replace('/\\.css$/i', '', $t);?></option>
+        ucwords(str_replace('_', ' ', preg_replace('/\\.css$/i', '', $t)));?></option>
       <?php endforeach; ?>
       </select> </td>
     </tr>
@@ -57,17 +57,40 @@
       htmlentities(utf8_decode($demo->raw)) ?></textarea>
     <br/>
 
-    <label for='save_'>Save</label> (your code will be visible to others*):
     <!-- this just makes things easier //-->
     <input type='hidden' name='post' value='true'>
-    
+    <label for='save_'>Save</label> (your code will be visible to others*):
     <input type='checkbox' id='save_' name='save'
       <?= ($this->input->post('post') && !$this->input->post('save'))? '' : 'checked';?>>
-    
+      
+   <?php // we don't want to allow people to set previously editable demos uneditable ?>
+   <?php if($demo->id === null):?>
+    <div id='editable-container'>
+      <label for='editable_'>Editable</label>
+(your code will be editable by yourself and others -- you probably want to uncheck this if you intend to <a href='<?=site_url('/demo/embed')?>'>embed</a> your code elsewhere.)      
+      <input type='checkbox' id='editable_' name='editable'      
+        <?=  ($this->input->post('post') && !$this->input->post('editable'))? '' : 'checked';?>>
+    </div>
+    <?php endif; ?>
     <br/>
-    <input type='submit'>
+    <input type='submit' value='Submit'>
   </form>
 </div>
 <p> *if you accidentally submit some code which should have been kept private,
 send an email to mark at asgaard co uk to request it to be removed from the
 database. </p>
+
+<script type='text/javascript'>
+// JS to hide/show the editable box based on whether or not save is selected
+$(document).ready(function() {
+  var handler = function() {
+    if ($(this).is(':checked')) {
+      $('#editable-container').fadeIn('fast');
+    } else {
+      $('#editable-container').fadeOut('fast');
+    }
+  };
+  $('#save_').change(handler);
+  handler.call($('#save_'));
+});
+</script>
