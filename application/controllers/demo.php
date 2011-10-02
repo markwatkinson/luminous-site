@@ -127,6 +127,10 @@ class Demo extends MY_Controller {
       $data['id'] = $id;
       // this will throw a 404 if the ID does not exist
       $this->Demorecord_model->read($id);
+      // security check, not sure if this is redundant or not
+      if (!$this->Demorecord_model->editable) {
+        throw new HTTPException(403);
+      }
     } else {
       // we only check for the editable input if it's a new submission
       // otherwise people could set previous editables to non-editable
