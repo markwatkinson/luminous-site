@@ -23,37 +23,30 @@
   </form>
 </noscript>
 
-<div class='bar' style='text-align: center'>
+<div class='demo-meta-bar'>
 <a href='#' id='embed'>Embed</a>
 <?php if ($demo->editable): ?>
-<a href='<?=site_url('demo/edit/' . $demo->id)?>' style='margin:0 2em'>Edit</a>
+<a href='<?=site_url('demo/edit/' . $demo->id)?>'>Edit</a>
 <?endif?>
 </div>
 
+<!-- the embed notification, it's neater/easier to define this in HTML than JS -->
+<div id='embed-notification' style='display:none'>
+  Fetch as JSON:
+  <input type='text' value='<?=site_url("/demo/embed/{$demo->id}/" . $this->session->userdata('theme'))?>'>
+  Fetch as JSONP:
+  <input type='text' value='&lt;script type="text/javascript" src="<?=site_url("/demo/embed/{$demo->id}/" . $this->session->userdata('theme'))?>?callback=CALLBACK"&gt;&lt;/script&gt;'>
+  <div style='text-align:center; margin-top: 1em;'>
+    <a href='<?=site_url('/demo/embed/')?>'>What does this mean?</a>
+  </div>
+</div>
+  
 <script>
 $(document).ready(function() {
   // generate embed code
   $('#embed').click(function() {
-    // TODO move this CSS into a stylesheet
-    var jsonp = '<script src="<?=site_url("/demo/embed/{$demo->id}/" . $this->session->userdata('theme'))?>?callback=CALLBACK" type="text/javascript"><\/script>';
-    var json = '<?=site_url("/demo/embed/{$demo->id}/" . $this->session->userdata('theme'))?>';
-    var css = {'overflow': 'auto',
-//       'font-weight' : 'bold',
-      'margin' : '0 0'};
-    var html = $('<div>');
-
-    html.append($('<span>Embed using JSON</span>'));
-    html.append($('<pre>').text(json).css(css));
-    html.append($('<br>'));
-    html.append($('<span>Embed using JSONP:</span>'));
-    html.append($('<pre>').text(jsonp).css(css));
-    
-    html.append(
-      $('<div style="text-align:center">').append(
-        $('<a href="<?=site_url('/demo/embed/')?>">What does this mean?</a>').css('color', '#BFD9FF')
-      )
-    );
-    $.jKnotify(html, {title: 'Embed Code', passive: false});
+    var embed = $('#embed-notification').clone().show();
+    $.jKnotify(embed, {title: 'Embed Code', passive: false});
     return false;
   });
   
@@ -67,7 +60,7 @@ $(document).ready(function() {
     $(this).data('expanded', !expanded);
     return false;
   });
-  $('.bar').append($a);
+  $('.demo-meta-bar').append($a);
 });
 </script>
 <?php endif; ?>

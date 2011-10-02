@@ -382,3 +382,20 @@ dd {
 .rss a:hover {
   text-decoration: none;
 }
+
+
+.demo-meta-bar {
+  text-align: center;
+}
+.demo-meta-bar a {
+  margin: 0 1em;
+}
+
+
+.notify_area input[type=text] {
+  width: 100%;
+}
+
+.notify_area a {
+  color: #BFD9FF;
+}
