@@ -5,13 +5,35 @@ class Page extends MY_Controller {
   public function __construct() {
     parent::__construct();
   }
-  private function _load_text_page($name) {
-    $this->load->model('Text_model');    
-    $this->_load_header();
-    $this->load->view('pageview.php', 
-      array('content' => $this->Text_model->get($name)));
+  private function _load_text_page($name, $title=null) {
+    $this->load->model('Text_model');
+    $params = array();
+    if ($title !== null) $params['title'] = $title;
+    $this->_load_header($params);
+    $params = array('content' => $this->Text_model->get($name));
+    $this->load->view('pageview.php', $params);
     $this->_load_footer();
   }
+
+  // we're going to override the remap function to try to fetch anything in
+  // the text model as a 'function'.
+  public function _remap($method, $params=array()) {
+    if (!method_exists($this, $method)) {
+      try {
+        // this shouldn't be here, but title case the method name for the
+        // HTML <title>
+        $title = ucwords(str_replace('-', ' ', $method));
+        $this->_load_text_page($method, $title);
+      } catch (exception $e) {
+        // failed - send it back up to the parent's remap. This will deal with
+        // 404s and whatnot.
+        parent::_remap($method, $params);
+      }
+    } else {
+      parent::_remap($method, $params);
+    }
+  }
+  
 
   public function index() {
     if (strpos($this->uri->uri_string, 'page/index') === false) {

@@ -10,21 +10,7 @@
 
 class Text_model extends CI_Model {
   
-  private static $dir = './assets/text/';
-
-  // this is basically a security check to limit the number of files we
-  // can read from
-  private static $page_to_uri = array(
-    'index' => 'index',
-    'download' => 'download',
-    'features' => 'features',
-    'faq' => 'faq'
-  );
-  
-  private static $index_file = 'index';
-  private static $download_file = 'download';
-  private static $features_file = 'features';
-  private static $faq_file = 'faq';
+  private static $dir = './assets/text';
 
   public function __construct() {
     parent::__construct();
@@ -32,19 +18,34 @@ class Text_model extends CI_Model {
     $this->load->helper('file');
   }
 
+  private function _is_valid($filename) {
+    return preg_match('/^[\w\-]*$/', $filename);
+  }
+
   function index() {
-    return array_keys(self::$page_to_uri);
+    $output = array();
+    foreach (glob(self::$dir . '/*') as $f) {
+      $f = str_replace(self::$dir . '/', '', $f);
+      if ($this->_is_valid($f)) $output[] = $f;
+    }
+    return $output;
   }
 
   function change_time($page) {
-    $file = isset(self::$page_to_uri[$page])? self::$page_to_uri[$page] : null;
-    return ($file !== null)? filemtime(self::$dir . $file) : 0;
+    if ($this->_is_valid($page) && file_exists(self::$dir . '/' . $page)) {
+      return filemtime(self::$dir . '/' . $page);
+    }
+    return 0;
   }
 
   function get($page) {
-    $file = isset(self::$page_to_uri[$page])? self::$page_to_uri[$page] : null;
-    $text = ($file === null)? '' : read_file(self::$dir . $file);
-    return $this->markup->format($text);
+    $path = self::$dir . '/' . $page;
+    if ($this->_is_valid($page) && file_exists($path)) {
+      return $this->markup->format( file_get_contents($path) );
+    }
+    else {
+      throw new HTTPException(404);
+    }
   }
   
 
