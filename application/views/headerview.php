@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name='description' content='Luminous is a PHP syntax highlighter. It focusses on modern features like CSS and providing high quality highlighting for your website or blog'>
-  <title> Luminous - PHP Source Code Syntax Highlighter - <?= htmlentities($this->pages->active_name()); ?></title>
+  <title> Luminous PHP Syntax Highlighter - <?= isset($title)? $title : htmlentities($this->pages->active_name()); ?></title>
   <script>
   var BASE_URL = '<?=base_url()?>';
   </script>
