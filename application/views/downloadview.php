@@ -45,9 +45,18 @@ foreach($files as $f): ?>
 <p>
 You've downloaded a distribution: what now? Visit the <a href='<?= site_url('/docs/show/index')?>'>documentation</a>.
 
+<h2>Other stuff</h2>
+
+<h3>CodeIgniter Syntax Highlighting Hook</h3>
+
+Looking for quality syntax highlighting for CodeIgniter? Look no further:
+<a href='<?=site_url('download/get/ci-syntax-highlight.zip')?>'>ci-syntax-highlight.zip</a>. 
+
+See <a href='<?=site_url('page/codeigniter-syntax-highlight-hook')?>'>usage instructions</a>.
+
 
 <?php if(count($releases) > 1): ?>
-<h2><span>Old Versions</span></h2>
+<h3><span>Old Versions</span></h3>
 
 <table class='downloads old-downloads'>
 <tr class='header'>
@@ -84,7 +93,7 @@ foreach($files as $i=>$f): ?>
 <p>Releases prior to 0.6.0 can be found on the old <a href='http://code.google.com/p/luminous'>Google Code page</a>.
 <?php endif; ?>
 
-<h2><span>Development Versions</span></h2>
+<h3><span>Development Versions</span></h3>
 Looking for the development version? Check out our Git repository on <a href='https://github.com/markwatkinson/luminous/'>GitHub</a>.
 
 

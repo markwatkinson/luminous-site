@@ -1,0 +1,78 @@
+= CodeIgniter Syntax Highlighting (ci-syntax-highlight)=
+
+CodeIgniter is a pretty neat little framework and it's easy to extend and add useful features to, like syntax highlighting. This particular method makes it possible to add syntax highlighting transparently, i.e. you write your HTML out as usual and place your code blocks within `[code] [/code]` or `<pre> </pre>` or `<code> </code>` blocks, and CodeIgniter will automatically replace these with syntax highlighted code before the page is finally rendered.
+
+This particular method uses a feature of CodeIgniter called 'hooks'.
+
+== Installation and Configuration Instructions ==
+
+*1.* Get a copy of ci-syntax-highlight. You can [/download/get/ci-syntax-highlight.zip grab a zipped copy], or if you prefer, clone from [https://github.com/markwatkinson/ci-syntax-highlight GitHub]:
+
+  `git clone git://github.com/markwatkinson/ci-syntax-highlight.git`
+
+*2.* Extract/clone into your CI application/hooks/ directory. You should end up with application/hooks/ci-syntax-highlight/highlight.php and application/hooks/ci-syntax-highlight/luminous/. It is important the path is correct.
+
+*3.* Luminous uses a cache, which by default is stored on the filesystem. To use it, you need to create the directory luminous/cache/ and make it writable to your PHP server. If it's not writable you'll know about it soon enough. There's a hacking opportunity here to make the caching for the hook as configurable as for Luminous.
+
+*4.a* Now we need to enable hooks in CodeIgniter. If your application does not yet use any hooks, you will probably need to alter application/config/config.php and find the line `$config['enable_hooks'] = FALSE;` and change it to `$config['enable_hooks'] = TRUE;`
+
+*4.b* Finally, we need to tell CodeIgniter about the hooks. Insert the following code into application/config/hooks.php:
+
+{{{lang=php
+<?php
+$hook['display_override'] = array(
+  'class' => 'highlight',
+  'function' => 'hook',
+  'filename' => 'highlight.php',
+  'filepath' => 'hooks/ci-syntax-highlight',
+  'params' => array()
+);
+}}}
+
+The last element, params, is an associative array. The valid settings are:
+
+ * 'theme' => 'themefile.css' (themes are under luminous/style)
+ * 'header' => true|false (if false, the HEAD code is not inserted. Default true)
+
+
+== Usage ==
+
+Now that it's installed, you should be able to trigger highlighting by using `[code] [/code]` or `<pre> </pre>` or `<code> </code>` blocks.
+
+The blocks take an argument of "language", which corresponds to a [/page/languages/ language code] recognised by Luminous.
+
+If you use the HTML tags, you must give them a class of "highlight" or they will be ignored. Also, inside the HTML tags, it is expected that the code will be escaped (like it was returned by php's htmlspecialchars). This is not so of the `[code]` block.
+
+=== Examples ===
+
+{{{lang=html
+[code language=python]
+def f(x): return x**2 if x > 0 else 1
+[/code]
+}}}
+
+{{{lang=html
+<code class='highlight' language='python'>
+def f(x): return x**2 if x &gt; 0 else 1
+</code>
+}}}
+
+
+{{{lang=html
+<pre class='highlight' language='python'>
+def f(x): return x**2 if x &gt; 0 else 1
+</pre>
+}}}
+
+If all works correctly, you should find each of these is highlighted as Python code when rendered.
+
+== Important stuff ==
+
+The CSS is stored under the Luminous subdirectory, and it will be injected into the output just before the end of the output's `<head>` tag.
+
+
+== Bugs and help and stuff ==
+
+If you hit some problems, please post to the GitHub [https://github.com/markwatkinson/ci-syntax-highlight/issues issue tracker].
+
+Please also feel free to fork and improve the hook!
