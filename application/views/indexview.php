@@ -1,8 +1,12 @@
 <h1>Luminous - A PHP Syntax Highlighter</h1>
 
 <div class='about'>
-Luminous is a <strong>syntax highlighter</strong> written in <strong>PHP</strong>.<br/>
-Its main focus is on accuracy and quality of code highlighting, and supports modern features like CSS colour themes. Luminous can highlight around 30 source code languages, and even includes a built-in cache so you don't have to worry about your server load.
+Luminous is a <strong>PHP syntax highlighter</strong>.
+<p>
+Its main focus is on accuracy and quality of code highlighting, and supports modern features like CSS colour themes. Luminous is a generic highlighter which can highlight around 30 source code languages, and includes a built-in cache so you don't have to worry about your server load. If you want professional, high quality PHP syntax highlighting for your website or blog, give it a try.
+
+<p>
+You can try it out here as an online syntax highlighter, and download if it you want to deploy it on your own site.
 </div>
 <p>
 <?php
@@ -43,7 +47,7 @@ if (navigator.appName != 'Microsoft Internet Explorer') {
     RSS
   </a>
 </div>
-<?= format_feed('http://blog.luminous.asgaard.co.uk/feed/', 2); ?>
+<?= format_feed('http://blog.luminous.asgaard.co.uk/feed/', 4); ?>
 
 <h2>Example/Demo</h2>
 <?= luminous::highlight('php', 
