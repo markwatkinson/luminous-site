@@ -70,7 +70,7 @@ div.menu {
   position: relative;
   height: 100%;
 }
-div.menu  a {
+div.menu-bar  a {
   color: white;
   display: inline-block;
   padding: 0em 1em;
@@ -81,11 +81,11 @@ div.menu  a {
   text-shadow: #80B3FF 0px 0px 10px;
   font-weight: bold;
 }
-div.menu  a.page-active {
+div.menu-bar  a.page-active {
   background-color: black;
   border-left: 1px solid #bbb;
 }
-div.menu  a:hover {
+div.menu-bar  a:hover {
   text-decoration: none;
   text-shadow: none;
 }
@@ -390,7 +390,6 @@ dd {
 .demo-meta-bar a {
   margin: 0 1em;
 }
-
 
 .notify_area input[type=text] {
   width: 100%;

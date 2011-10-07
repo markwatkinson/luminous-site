@@ -1,20 +1,6 @@
 (function($) {
+  
   $(document).ready(function() {
-    $('.page').css('display', 'none').fadeIn('fast');
-    $('a:not(.button)').hover(
-      function() {$(this).stop().animate({'opacity' : '0.7'});}, 
-      function() {$(this).stop().animate({'opacity' : '1'});}
-    );
-
-    if (!$.browser.msie) {
-      var default_='0.7', target='1', speed='fast';
-      $('a.button img').css('opacity', default_);
-      $('a.button').hover(
-        function() {$('img', this).stop().animate({'opacity': target}, speed)},
-        function() {$('img', this).stop().animate({'opacity': default_}), speed}
-      );
-    }
-
 
     // theme switcher for Luminous. Display if there are any luminous elements
     // on the page.
@@ -55,8 +41,27 @@
         }
 
         return false;
-      }).css('float', 'right');
-      $('.page').prepend(theme_switcher);
+      }).css('float', 'left');
+      $('.menu-bar').prepend(theme_switcher);
     }
+
+    // fade effect when mousing over <a> elements
+    $('.page').css('display', 'none').fadeIn('fast');
+    $('a:not(.button)').hover(
+      function() {$(this).stop().animate({'opacity' : '0.7'});}, 
+      function() {$(this).stop().animate({'opacity' : '1'});}
+    );
+
+    if (!$.browser.msie) {
+      var default_='0.7', target='1', speed='fast';
+      $('a.button img').css('opacity', default_);
+      $('a.button').hover(
+        function() {$('img', this).stop().animate({'opacity': target}, speed)},
+        function() {$('img', this).stop().animate({'opacity': default_}), speed}
+      );
+    }
+
+
+
   });
 })(jQuery);
