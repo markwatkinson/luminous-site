@@ -48,3 +48,9 @@ EOF;
   return $button;
 }
 
+function title_case($text) {
+  $text = str_replace('_', ' ', $text);
+  $text = str_replace('-', ' ', $text);
+  $text = ucwords($text);
+  return $text;
+}

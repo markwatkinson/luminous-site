@@ -40,7 +40,7 @@ class Docs extends MY_Controller {
     foreach($this->Docs_model->page_hierarchy as $p) {
       $hierarchy[] = array(str_replace('-', ' ', $p), 'docs/show/' . $p);
     }
-    $this->_load_header();
+    $this->_load_header(array('title'=>title_case($page) . ' Documentation'));
     $this->load->view('pageview.php', array(
       'content'=>$content,
       'page_hierarchy' => $hierarchy

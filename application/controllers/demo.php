@@ -34,8 +34,9 @@ class Demo extends MY_Controller {
     $this->load->model('Demorecord_model');
     
     $this->Demorecord_model->read($id);
-    
-    $this->_load_header();
+    $data = array();
+    if (($d = $this->Demorecord_model->description)) $data['title'] = $d;
+    $this->_load_header($data);
     $this->load->view('demooutview.php',
       array('demo' => $this->Demorecord_model)
     );
