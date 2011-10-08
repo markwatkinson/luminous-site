@@ -19,7 +19,7 @@ function format_feed($url, $n=5) {
     // limits to n/2 words because every second element is whitespace
     $words = array_slice($words, 0, 80);
     $desc = implode('', $words);
-    $date = $item->get_date('jS M Y');
+    $date = $item->get_date('jS F Y');
     $title = (strip_tags($item->get_title()));
     $link = $item->get_permalink();
     $s .= <<<EOF
@@ -53,4 +53,14 @@ function title_case($text) {
   $text = str_replace('-', ' ', $text);
   $text = ucwords($text);
   return $text;
+}
+
+
+function pretty_date($time_or_date) {
+  $d = 0;
+  if (is_string($time_or_date)) $d = strtotime($time_or_date);
+  elseif (is_int($time_or_date)) $d = $time_or_date;
+
+  return date('jS F Y', $d);
+  
 }
