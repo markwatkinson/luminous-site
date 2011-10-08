@@ -30,4 +30,16 @@ class Download extends MY_Controller {
     @fclose($fh);
     header('Location: ' . base_url() . 'assets/downloads/' . $file);
   }
+
+  public function release($format=null) {
+    if ($format === 'null') $format = 'zip';
+    $this->load->model('Download_model');
+    $current = $this->Download_model->get_current();
+    foreach($current[0]['files'] as $f) {
+      if ($f['format'] === $format) {
+        $this->get($f['filename']);
+        break;
+      }
+    }
+  }
 }
