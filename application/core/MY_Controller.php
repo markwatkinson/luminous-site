@@ -87,8 +87,8 @@ class MY_Controller extends CI_Controller {
   protected function _load_header($data=array()) {
     $this->load->view('headerview.php', $data);
   }
-  protected function _load_footer() {
-    $this->load->view('footerview.php');
+  protected function _load_footer($data=array()) {
+    $this->load->view('footerview.php', $data);
   }
 
   protected function _load_404($data=array()) {
