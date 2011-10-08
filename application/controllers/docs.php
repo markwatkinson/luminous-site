@@ -45,6 +45,6 @@ class Docs extends MY_Controller {
       'content'=>$content,
       'page_hierarchy' => $hierarchy
       ));
-    $this->_load_footer();
+    $this->_load_footer(array('modified' => $this->Docs_model->change_time($page)));
   }
 }
