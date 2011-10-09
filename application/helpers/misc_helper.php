@@ -55,6 +55,18 @@ function title_case($text) {
   return $text;
 }
 
+function breadcrumb($pages, $prefix='') {  
+  foreach($pages as $i=>$p) {
+    list($name, $url) = $p;
+    $name = str_replace('-', ' ', $name);
+    $name = str_replace('_', ' ', $name);
+    $name = ucwords($name);
+    $pages_[] = ($i===count($p)-1)? $name : "<a href='$url'>$name</a>";
+  }
+  return '<div class="hierarchy">'
+  . ($prefix? $prefix . ': ' : '') . join(' &gt; ', $pages_) . '</div>';
+}
+
 
 function pretty_date($time_or_date) {
   $d = 0;

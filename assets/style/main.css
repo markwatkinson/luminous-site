@@ -8,6 +8,19 @@ body {
   color: #333;
 }
 
+.centre {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+img.middle {
+  vertical-align: middle;
+}
+img.left {
+  margin-right: 1em;
+}
+
 /* gets rid of ugly dotted borders when you click a link in Firefox */
 a:active, a:focus {
   outline: none;
@@ -301,8 +314,9 @@ div.luminous a.line_number {
 }
 
 .help-hint {
-  color: #888;
+  color: #555;
   cursor:help;
+  border-bottom: 1px dashed #555;
 }
 .help-hint:hover {
   color: #333;
@@ -398,3 +412,10 @@ dd {
 .notify_area a {
   color: #BFD9FF;
 }
+
+
+.latest-release {
+  text-align: right;
+  font-size: smaller;
+}
+

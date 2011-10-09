@@ -48,6 +48,12 @@
   margin-right: 1em;
   /* for IE */
   border: 0px;
+  vertical-align: text-bottom;
+  top: 10px;
+}
+
+.help {
+  font-weight: bold;
 }
 
 

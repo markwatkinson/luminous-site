@@ -6,13 +6,23 @@ class Download extends MY_Controller {
   public function __construct() {
     parent::__construct();
     $this->pages->set_active('Download');
+    $this->load->helper('downloads_helper');
+    $this->scripts->js('hints.js');
   }
 
   public function index() {
     $this->load->model('Download_model');
     $model_data = $this->Download_model->get_current();
+    $release = $model_data[0];
     $this->_load_header();
-    $this->load->view('downloadview.php', array('releases' => $model_data));
+    $this->load->view('downloads/current.php', array('release' => $release));
+    $this->_load_footer();
+  }
+
+  public function archive() {
+    $this->load->model('Download_model');
+    $this->_load_header();
+    $this->load->view('downloads/list.php');
     $this->_load_footer();
   }
 
