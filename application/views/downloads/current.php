@@ -27,6 +27,6 @@ See <a href='<?=site_url('page/codeigniter-syntax-highlight-hook')?>'>usage inst
 
 <h2>Old Versions and Alternate Formats</h2>
 
-<img class='middle left' src='<?=assets_url('img/archive32.png')?>'>
+<img class='middle left' src='<?=assets_url('img/archive32.png')?>' alt='Archive'>
 
-Check out the <a href='<?=site_url('download/archive')?>' alt='Archive'>archive</a>.
+Check out the <a href='<?=site_url('download/archive')?>' >archive</a>.
