@@ -344,7 +344,12 @@ label {
   font-weight: bold;
 }
 
-
+.pretty-list ul {
+  list-style-image : url('../img/tick.png');
+}
+.pretty-list ol {
+  list-style-image: none;
+}
 
 dl, dt, dd{
   padding: 0;
