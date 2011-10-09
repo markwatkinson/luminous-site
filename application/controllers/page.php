@@ -12,7 +12,7 @@ class Page extends MY_Controller {
     $this->_load_header($params);
     $params = array('content' => $this->Text_model->get($name));
     $this->load->view('pageview.php', $params);
-    $this->_load_footer();
+    $this->_load_footer(array('modified' => $this->Text_model->change_time($name)));
   }
 
   // we're going to override the remap function to try to fetch anything in
