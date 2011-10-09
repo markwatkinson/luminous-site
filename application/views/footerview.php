@@ -7,7 +7,7 @@
     Last modified: <?=pretty_date($modified)?>
     <?php endif ?>
     <div id='license'>
-    Luminous is a syntax highlighter for PHP and is free software (GPLv3).
+    Luminous is a PHP syntax highlighter and is free software (GPLv3).
     Development by <a href='http://asgaard.co.uk' target=_blank>Mark Watkinson</a>, but you can <a href='https://github.com/markwatkinson/luminous' target=_blank>get involved</a> too!
     </div>
     <div id='ci'>
