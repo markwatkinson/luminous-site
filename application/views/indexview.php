@@ -1,4 +1,13 @@
+<?php
+
+if (!empty($releases)) {
+  $newest = $releases[0];
+  $date = $newest['release_date'];
+  $version = $newest['release_number'];
+  $url = site_url("download/get/luminous-v$version.zip");
+  ?>
 <h1>Luminous - A PHP Syntax Highlighter</h1>
+<div class='latest-release'>Latest release: <?=pretty_date($date)?> - v<?=$version?></div>
 
 <div class='about'>
 Luminous is a <strong>PHP syntax highlighter</strong>.
@@ -9,16 +18,11 @@ Its main focus is on accuracy and quality of code highlighting, and supports mod
 You can try it out here as an online syntax highlighter, and download if it you want to deploy it on your own site.
 </div>
 <p>
-<?php
 
-if (!empty($releases)) {
-  $newest = $releases[0];
-  $date = $newest['release_date'];
-  $version = $newest['release_number'];
-  $url = site_url("download/get/luminous-v$version.zip");
-  ?>
 <p>
+
 <div class='index-button-holder'>
+
   <?= button('Download', $url, 'index-button', assets_url('img/download.png'),
     'Download version ' . $version); ?>
   <?= button('Get Started', site_url('/docs/show/index'), 'index-button alt',
