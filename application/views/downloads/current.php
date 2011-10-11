@@ -20,6 +20,8 @@ echo button('Download Luminous ' . $release['release_number'] , download_href($f
 
 <h2>CodeIgniter Syntax Highlighting Hook</h2>
 
+<img class='middle left' src='<?=assets_url('img/ci.png')?>' alt='CodeIgniter syntax highlighting'>
+
 Looking for quality syntax highlighting for CodeIgniter? Look no further:
 <a href='<?=site_url('download/get/ci-syntax-highlight.zip')?>'>ci-syntax-highlight.zip</a>.
 
