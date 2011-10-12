@@ -69,4 +69,9 @@ class Download_model extends CI_Model {
     }
     return $return;
   }
+
+  public function current_release() {
+    $c = $this->get_current();
+    return $c[0];
+  }
 }
