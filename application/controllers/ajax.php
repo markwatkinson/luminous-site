@@ -13,6 +13,16 @@ class Ajax extends MY_Controller {
     return json_encode($data);
   }
 
+  private function _write($data) {
+    $encode = $this->_encode($data);
+    if ($this->input->get('callback') !== false) {
+      echo $this->input->get('callback') . '(' . $encode . ');';
+    }
+    else echo $encode;
+    exit(0);
+  }
+    
+
   private function _luminous_set_theme($theme) {
     if (in_array($theme, luminous::themes())) {
       $this->session->set_userdata('theme', $theme);
@@ -25,6 +35,12 @@ class Ajax extends MY_Controller {
   }
   private function _luminous_get_theme() {
     return $this->session->userdata('theme');
+  }
+
+  private function _luminous_version() {
+    $this->load->model('Download_model');
+    $data = $this->Download_model->current_release();
+    return $data;
   }
   /**
    * public interface.
@@ -42,16 +58,19 @@ class Ajax extends MY_Controller {
     if ($args[0] === 'theme') {
       if (!isset($args[1])) return;
       if ($args[1] === 'list') {
-        echo $this->_encode($this->_luminous_list_themes());
+        echo $this->_write($this->_luminous_list_themes());
         return;
       } elseif ($args[1] === 'set') {
         if (!isset($args[2])) return;
         $this->_luminous_set_theme($args[2]);
         return;
       } elseif($args[1] === 'current') {
-        echo $this->_encode($this->_luminous_get_theme());
+        echo $this->_write($this->_luminous_get_theme());
         return;
       }
+    } elseif ($args[0] === 'version') {
+      echo $this->_write($this->_luminous_version());
+      return;
     }
   }
   public function index() {}
