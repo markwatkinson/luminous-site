@@ -5,28 +5,43 @@ class Download extends MY_Controller {
 
   public function __construct() {
     parent::__construct();
+    $this->load->model('Download_model');
+    
     $this->pages->set_active('Download');
     $this->load->helper('downloads_helper');
     $this->scripts->js('hints.js');
   }
 
-  public function index() {
-    $this->load->model('Download_model');
+  private function _current() {
     $model_data = $this->Download_model->get_current();
     $release = $model_data[0];
+    return $release;
+  }
+
+  protected function _load_footer($data=array()) {
+    if (!isset($data['modified'])) {
+      $c = $this->_current();
+      $data['modified'] = $c['release_date'];
+    }
+    parent::_load_footer($data);
+  }
+
+
+  public function index() {
+    $release = $this->_current();
     $this->_load_header();
     $this->load->view('downloads/current.php', array('release' => $release));
     $this->_load_footer();
   }
 
-  public function archive() {
-    $this->load->model('Download_model');
+  public function archive() {    
     $this->_load_header();
     $this->load->view('downloads/list.php');
     $this->_load_footer();
   }
 
   public function get($file=null) {
+    // TODO move this to a model
     $this->load->helper('url');
     if ($file === null || !file_exists(self::DOWNLOAD_DIR . '/' . $file)
       || !preg_match('/^[\w\-\.]+$/', $file)) {
@@ -41,15 +56,14 @@ class Download extends MY_Controller {
     header('Location: ' . base_url() . 'assets/downloads/' . $file);
   }
 
-  public function release($format=null) {
-    if ($format === 'null') $format = 'zip';
-    $this->load->model('Download_model');
-    $current = $this->Download_model->get_current();
-    foreach($current[0]['files'] as $f) {
+  public function release($format='zip') {
+    $current = $this->_current();
+    foreach($current['files'] as $f) {
       if ($f['format'] === $format) {
         $this->get($f['filename']);
-        break;
+        exit(0);
       }
     }
+    throw new HTTPException(404);
   }
 }
