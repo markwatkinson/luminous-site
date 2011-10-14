@@ -10,9 +10,9 @@ if (!empty($releases)) {
 <div class='latest-release'>Latest release: <?=pretty_date($date)?> - v<?=$version?></div>
 
 <div class='about'>
-Luminous is a <strong>PHP syntax highlighter</strong>.
+<p>Luminous is a <strong>PHP syntax highlighter</strong>.
 <p>
-Its main focus is on accuracy and quality of code highlighting, and supports modern features like CSS colour themes. Luminous is a generic highlighter which can highlight around 30 source code languages, and includes a built-in cache so you don't have to worry about your server load. If you want professional, high quality PHP syntax highlighting for your website or blog, give it a try.
+Its main focus is on accuracy and quality of code highlighting, and modern features like CSS colour themes. Luminous is a generic highlighter which can highlight around 30 source code languages, and includes a built-in cache so you don't have to worry about your server load. If you want professional, high quality PHP syntax highlighting for your website or blog, give it a try.
 
 <p>
 You can try it out here as an online syntax highlighter, and download if it you want to deploy it on your own site.
