@@ -351,92 +351,78 @@ class MarkupLite
     return preg_replace("/^[ \t]*----[ \t\-]*$/m", "<hr>", $str);    
   }
   
-  
-  function ParseListLines_($lines)
-  {
-    $list_elements = array(0=>array());
-    $level = -1;
-    $indent = -1;
+  private function BuildList($node) {
+    $tree = '';
     
-    
-    
-    foreach($lines as $line)
-    {
-      $ltrimmed = ltrim($line);
-      $this_indent = strlen($line) - strlen($ltrimmed);
-      
-      if ($this_indent > $indent)
-        $level++;
-      elseif($this_indent < $indent)
-        $level--;
-      
-      array_push($list_elements[$level], $ltrimmed);
+    // HACK - this avoids doubling the <li> for the root element
+    // I think the hierarchy is subtly wrong in the way it handles the
+    // root.
+    if ($node['text'] !== null) { 
+      $tree .= '<li>';
+      $tree .= $node['text'];
     }
-    
-    print_r($list_elements);
-    
-    return "";
-    
-  }
-  
-  
-  
-  function ParseListLines($lines)
-  {    
-    $stack = array();
-    $indent = -1;
-    $list = "";
-    $held_points = 0;
-    
-    $indents = array();
-    
-    
-    
-    foreach($lines as $line)
-    {
-      $ltrimmed = ltrim($line);
-      $this_indent = strlen($line) - strlen($ltrimmed);
 
-      if ($this_indent > $indent)
-      {
-        $stack[] = array($indent, $ltrimmed[0]);
-        $list .= ($ltrimmed[0] == '*')? "<ul>" : "<ol>";
-        array_push($indents, $this_indent);
+    if (!empty($node['children'])) {
+      $type = $node['children'][0]['type'];
+      $tree .= ($type)? ('<' . $type . '>') : '';
+      foreach($node['children'] as $c) {
+        $tree .= $this->BuildList($c);
       }
-      
-      if ($this_indent < $indent)
-      {
-        while (1)
-        {
-          if (empty($indents))
-            break;
-          if ($indents[count($indents)-1] == $this_indent)
-            break;
-          $i = array_pop($indents);
-          $s = array_pop($stack);
-          $list .= '</li>';
-          $list .= ($s[1] == '*')? "</ul>" : "</ol>";
-        }
-      }
-      
-      $indent = $this_indent;
-      $point = isset($ltrimmed[1])? substr($ltrimmed, 1) : "";
-      
-      while ($held_points) {
-        $held_points--;
-        $list .= '</li>';
-      }
-      
-      $list .= "<li>$point";
-      $held_points++;
+      $tree .= '</' . $type . '>';
     }
+    // HACK - see above
+    if ($node['text'] !== null)
+      $tree .= '</li>';
+    return $tree;
+  }
+
+  function ParseListLines($lines) {
+    // lists can be nested so first we're going to build a tree with the
+    // help of a stack
+    $stack = array();
+    // NOTE: assigning to this creates a copy
+    $node_skeleton = array(
+      'children' => array(),
+      'indent' => 0,
+      'text' => null,
+      'type' => null,
+    );
+    $root = $node_skeleton;
+    $stack[] = $root;
     
-    $stack_ = array_reverse($stack);
-    foreach($stack_ as $s)
-      $list .= '</li>' . (($s[1] == '*')? "</ul>" : "</ol>");
-    
-    return $list;
-    
+    foreach($lines as $line) {
+      assert (!empty($stack));
+      $head = &$stack[ count($stack) - 1];
+      $trimmed = ltrim($line);
+      $indent = strlen($line) - strlen($trimmed);
+      $trimmed = rtrim($trimmed);
+      $type = null;
+      $text = $trimmed;
+      if (isset($trimmed[0])) {
+        $type = ($trimmed[0] === '*')? 'ul' : 'ol';
+        $text = ltrim(substr($trimmed, 1));
+      }
+
+      while (count($stack) > 1 && ($last_indent = $head['indent']) >= $indent) {
+        $node = array_pop($stack);
+        $head = &$stack[ count($stack) - 1];
+        $head['children'][] = $node;
+      }
+
+      $node = $node_skeleton;
+      $node['indent'] = $indent;
+      $node['text'] = $text;
+      $node['type'] = $type;
+      $stack[] = $node;
+    }
+    while (count($stack) > 1) {
+      $node = array_pop($stack);
+      $head = &$stack[ count($stack) - 1];
+      $head['children'][] = $node;
+    }
+
+    assert (count($stack) === 1);
+    return $this->BuildList($stack[0]);
   }
   
   function ParseListsCb($matches)
