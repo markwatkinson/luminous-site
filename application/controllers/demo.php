@@ -20,6 +20,8 @@ class Demo extends MY_Controller {
       $this->session->set_userdata('theme', $this->default_theme);
     }
     $this->scripts->js('bytelimit');
+
+    $this->description = 'Try out Luminous as an online syntax highlighter';
   }
 
   protected function _load_header($data=array()) {

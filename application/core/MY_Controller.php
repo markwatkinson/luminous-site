@@ -24,6 +24,12 @@ class MY_Controller extends CI_Controller {
   public $scripts = array();
   public $default_theme = 'zenophilia.css';
 
+  /// page meta description
+  /// has to be public for some reason, protected can't be read from views.
+  public $description = 'Luminous is a PHP syntax highlighter.
+  It focusses on modern features like CSS and providing the best quality
+  highlighting for your website or blog';
+
   const ASSETS_DIR = './assets/';
   
   function __construct() {

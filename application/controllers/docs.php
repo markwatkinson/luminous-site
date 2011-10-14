@@ -10,6 +10,9 @@ class Docs extends MY_Controller {
     $super_page_name = 'Documentation';
     $this->pages->set_active($super_page_name);
     $this->doc_page = $this->pages->search($super_page_name);
+
+    $this->description = 'Documentation, help and instructions for using
+      and extending Luminous PHP syntax highlighter';
   }
 
   public function index() {

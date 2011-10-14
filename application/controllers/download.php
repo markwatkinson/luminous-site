@@ -28,13 +28,15 @@ class Download extends MY_Controller {
 
 
   public function index() {
+    $this->description = 'Download Luminous PHP syntax highlighter';
     $release = $this->_current();
     $this->_load_header();
     $this->load->view('downloads/current.php', array('release' => $release));
     $this->_load_footer();
   }
 
-  public function archive() {    
+  public function archive() {
+    $this->description = 'Download archive for Luminous Syntax Highlighter';
     $this->_load_header();
     $this->load->view('downloads/list.php');
     $this->_load_footer();

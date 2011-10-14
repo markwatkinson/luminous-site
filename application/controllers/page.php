@@ -54,6 +54,7 @@ class Page extends MY_Controller {
     redirect($this->pages->url('Download'), 'location', 301);
   }
   public function features() {
+    $this->description = 'The features that make Luminous the best PHP syntax highlighter for you';
     $this->pages->set_active('Features');
     $this->_load_text_page('features');
   }
@@ -64,6 +65,7 @@ class Page extends MY_Controller {
   }
   
   public function languages() {
+    $this->description = 'Languages supported by the Luminous syntax highlighting engine';
     $this->pages->set_active('Languages');
     $this->_load_header();
     $this->load->view('languageview.php',
