@@ -298,15 +298,19 @@ div.luminous a.line_number {
 .news {
   padding: 0 1em;
   line-height: normal;
+  
 }
 .news .title {
   font-weight: bold;
 }
 .news .date {
+  font-size: smaller;
 }
 .news .header {
   border: 1px solid #ccc;
   background-color: #E1E1E1;
+  padding: 0.25em 1em;
+  border-radius: 0.5em;
 }
 .news .content {
   width: 98%;
@@ -390,18 +394,22 @@ dd {
 }
 
 
+.news { 
+  position: relative;
+  padding-top: 10px;
+  
+}
 .rss {
-  line-height: 16px;
-  text-align:right;
-  margin-bottom: 2px;
+  position: absolute;
+  top: -10px;
+  right: 0;
+}
+.rss:hover {
+  text-decoration: none;
 }
 .rss img {
   vertical-align: top;
 }
-.rss a:hover {
-  text-decoration: none;
-}
-
 
 .demo-meta-bar {
   text-align: center;
