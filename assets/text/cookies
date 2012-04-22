@@ -1,0 +1,9 @@
+= Cookies =
+
+In accordance with dull EU legislation, this page is a full-disclosure on how and when cookies are used on this site.
+
+Firstly, consent is never requested to store a cookie on your machine. This is because no tracking, identification or advertising cookies are set. This site sets a single cookie, which is completely benign. The cookie currently just stores the theme of the page you have set, so that it can be remembered between page-views (otherwise you'd have to reset it every time you switched page). That's it.
+
+This site is powered by a library called CodeIgniter and the cookie is retrieved using CodeIgniter's session abstraction layer. The actual implementation of the cookie is dependent upon CodeIgniter. It may be that it sets more than one. It may be that it sets it even before you've selected a theme. In any case, the cookie is completely unrelated to your privacy.
+
+The site's source code, including cookie behaviour, is fully visible and auditable online at [https://github.com/markwatkinson/luminous-site GitHub], if you care.

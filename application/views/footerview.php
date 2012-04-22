@@ -3,6 +3,7 @@
 
   <!-- footer //-->
   <div class='footer'>
+    <a href='<?= site_url('page/cookies')?>'>Site cookie information</a> <br/>
     <?php if(isset($modified)): ?>
     Last modified: <?=pretty_date($modified)?>
     <?php endif ?>
