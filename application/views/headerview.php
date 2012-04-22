@@ -18,7 +18,7 @@
 
   <!-- Wordpress RSS feed //-->
     <link rel="alternate" type="application/rss+xml" title="RSS"
-      href="http://blog.luminous.asgaard.co.uk/feed/">
+      href="http://blog.asgaard.co.uk/t/luminous?f=rss">
 
   <!-- IE9 breaks with the inline block/float/border radius
   combo for some reason which makes our buttons look ugly sometimes //-->
