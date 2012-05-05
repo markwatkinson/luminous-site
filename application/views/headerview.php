@@ -15,6 +15,8 @@
   <link rel='stylesheet' id='luminous-theme' href='<?=
     assets_url('/luminous/style/' .  $this->session->userdata('theme'))?>'>
   <script type='text/javascript' src='<?=assets_url('/luminous/client/luminous.js')?>'></script>
+  
+  <?= isset($extra_head)? $extra_head : '' ?>
 
   <!-- Wordpress RSS feed //-->
     <link rel="alternate" type="application/rss+xml" title="RSS"

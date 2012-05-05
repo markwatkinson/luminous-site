@@ -1,0 +1,18 @@
+header {
+  position: relative;
+  padding-top: 1em;
+}
+
+header h1 {
+  padding-top: 0;
+  margin-top: 0;
+  text-align: center;
+}
+header .date {
+  position: absolute;
+  top: 0;
+}
+
+article.news {
+  border-bottom: 1px solid #888;
+}

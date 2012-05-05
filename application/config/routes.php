@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "Page";
 $route['404_override'] = 'page/show_404';
-
+$route['news/(.*)'] = 'news/story/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

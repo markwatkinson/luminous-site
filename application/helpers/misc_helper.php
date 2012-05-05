@@ -1,6 +1,14 @@
 <?php
 
 
+/**
+  * Returns a local (site) URL for the given news item's remote URL 
+  */
+function news_url($remote_url) {
+  $trimmed = preg_replace('%(http://)[^/]*+/%i', '', $remote_url);
+  return site_url('/news/' . $trimmed);
+}
+
 function format_feed($url, $n=5, $show_rss='/assets/img/rss.png') {
   $sp_dir = dirname(__FILE__) . '/../libraries/simplepie/';
   require_once($sp_dir . '/simplepie.class.php');
@@ -31,7 +39,7 @@ EOF;
     $desc = implode('', $words);
     $date = $item->get_date('jS F Y');
     $title = (strip_tags($item->get_title()));
-    $link = $item->get_permalink();
+    $link = news_url($item->get_permalink());
     $s .= <<<EOF
 <div class='header'>
   <span class='date'>{$date}</span> - <span class='title'><a href='{$link}' rel='external'>{$title}</a></span>
