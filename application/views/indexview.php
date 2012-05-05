@@ -44,7 +44,7 @@ if (navigator.appName != 'Microsoft Internet Explorer') {
 }
 ?>
 
-<h2>News</h2>
+<h2><a href='<?=site_url('news')?>'>News</a></h2>
 <?= format_feed('http://blog.luminous.asgaard.co.uk/feed/', 4); ?>
 
 <h2>Example/Demo</h2>

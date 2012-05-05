@@ -32,7 +32,9 @@ EOF;
   $i = 0;
   foreach($feed->get_items() as $item) {
     if (++$i > $n) break;
-    $desc = trim(strip_tags($item->get_description()));
+    $desc = $item->get_description();
+    $desc = preg_replace('% </?(p|br|ul|li) %xi', ' $0', $desc);
+    $desc = trim(strip_tags($desc, '<a>'));
     $words = preg_split('/(\S+)/', $desc, -1, PREG_SPLIT_DELIM_CAPTURE);
     // limits to n/2 words because every second element is whitespace
     $words = array_slice($words, 0, 250);
