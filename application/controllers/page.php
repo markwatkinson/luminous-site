@@ -45,6 +45,7 @@ class Page extends MY_Controller {
     }
     $this->pages->set_active('Main');
     $this->load->model('Download_model');
+    $this->load->library('Simplepieloader');
     $model_data = $this->Download_model->get_current();
     $this->_load_header();
     $this->load->view('indexview.php', array('releases'=>$model_data));

@@ -45,7 +45,37 @@ if (navigator.appName != 'Microsoft Internet Explorer') {
 ?>
 
 <h2><a href='<?=site_url('news')?>'>News</a></h2>
-<?= format_feed('http://blog.asgaard.co.uk/t/luminous/news?f=rss', 4); ?>
+<div class='news'>
+  <?php $news_rss = 'http://blog.asgaard.co.uk/t/luminous/news?f=rss' ?>
+  <a href="<?= $news_rss ?>" class="rss" rel="external">
+    <img src="/assets/img/rss.png" alt="RSS">
+    RSS
+  </a>
+  <section>
+    <?php 
+      $feed = $this->simplepieloader->feed($news_rss);
+      $feed_limit = 10;
+      foreach($feed->get_items() as $i=>$item):
+        if ($i >= $feed_limit) break;
+      ?>
+      <article class='news-<?=$i?>'>
+        <div class='header'>
+          <span class='date'> <?= $item->get_date('jS F Y') ?> </span>
+          -
+          <span class='title'>
+            <a href='<?= news_url($item->get_permalink()) ?>'><?= $item->get_title() ?></a>
+          </span>
+        </div>
+        <div class='content'> 
+          <?= $item->get_description() ?>
+          <p>
+            <a href='<?= news_url($item->get_permalink()) ?>'>Read more</a>
+          </p>
+        </div>
+      </article>
+    <?php endforeach ?>
+  </section>
+</div>
 
 <h2>Example/Demo</h2>
 <?= luminous::highlight('php', 

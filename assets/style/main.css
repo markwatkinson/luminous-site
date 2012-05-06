@@ -305,16 +305,47 @@ div.luminous a.line_number {
 }
 .news .date {
   font-size: smaller;
+  line-height: 18px;
 }
 .news .header {
   border: 1px solid #ccc;
   background-color: #E1E1E1;
   padding: 0.25em 1em;
   border-radius: 0.5em;
+  line-height: 18px;
+}
+.news .header {
+  margin-bottom: 1em;
 }
 .news .content {
   width: 98%;
   margin: 0.25em;
+  display: none;
+}
+
+.news-0 .content,
+.news-1 .content {
+  display: block;
+}
+
+.news article {
+  width: 48%;
+  float: left;
+}
+.news article:nth-child(odd) {
+  margin-right: 4%;
+}
+
+.news article.news-0,
+.news article.news-1 {
+  width: auto;
+  float: none;
+  margin: 0;
+}
+.news::after {
+  display: block;
+  clear: both;
+  content: "";
 }
 
 .help-hint {
