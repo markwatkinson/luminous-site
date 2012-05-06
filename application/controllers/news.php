@@ -37,15 +37,17 @@ class News extends MY_Controller {
     //echo $url; die();
     $feed = $this->simplepieloader->feed($url);
     $items = $feed->get_items();
+    $canonical = sprintf($this->canonical, '/t/luminous/news') . '?p=' . $offset;
     $this->_load_header(array(
       'extra_head' 
-        => "<link rel='canonical' href='{$url}'/>"
+        => "<link rel='canonical' href='{$canonical}'/>"
     ));    
     if ($items) {
       $count_ = $feed->get_channel_tags('', 'count');
       $count = 0;
-      if (isset($count_[0]) && isset($count_[0]['data']))
+      if (isset($count_[0]) && isset($count_[0]['data'])) {
         $count = (int)$count_[0]['data'];
+      }
       $this->pagination->initialize(array(
         'base_url' => current_url() . '?',
         'total_rows' => (int)$count,
