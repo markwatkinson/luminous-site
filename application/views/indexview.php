@@ -45,7 +45,7 @@ if (navigator.appName != 'Microsoft Internet Explorer') {
 ?>
 
 <h2><a href='<?=site_url('news')?>'>News</a></h2>
-<?= format_feed('http://blog.luminous.asgaard.co.uk/feed/', 4); ?>
+<?= format_feed('http://blog.asgaard.co.uk/t/luminous/news?f=rss', 4); ?>
 
 <h2>Example/Demo</h2>
 <?= luminous::highlight('php', 

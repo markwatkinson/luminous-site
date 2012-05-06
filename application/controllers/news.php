@@ -2,7 +2,7 @@
 
 class News extends MY_Controller {
 
-  private $remote_index = 'http://blog.asgaard.co.uk/t/luminous/news?f=rss';
+  private $remote_index = 'http://blog.asgaard.co.uk/t/luminous/news?f=rss&p=%d';
   private $remote_item = 'http://blog.asgaard.co.uk/%s?f=rss';
   private $canonical = 'http://blog.asgaard.co.uk/%s';
   
@@ -20,26 +20,39 @@ class News extends MY_Controller {
     $feed = $this->simplepieloader->feed($url);
     $item = $feed->get_item();
     if (!$item) {
-      echo $url; die();
       throw new HTTPException(404);
     }
     $this->_load_header(array(
       'extra_head' 
         => "<link rel='canonical' href='$canonical'/>"
     ));
-    $this->load->view('news/item.php', array('item' => $item));
+    $this->load->view('news/item.php', array('item' => $item, 'canonical' => $canonical));
     $this->_load_footer();
   }
   
   public function index() {
-    $feed = $this->simplepieloader->feed($this->remote_index);
+    $this->load->library('pagination');  
+    $offset = (int)$this->input->get('p');    
+    $url = sprintf($this->remote_index, $offset);
+    //echo $url; die();
+    $feed = $this->simplepieloader->feed($url);
     $items = $feed->get_items();
-    
     $this->_load_header(array(
       'extra_head' 
-        => "<link rel='canonical' href='{$this->remote_index}'/>"
+        => "<link rel='canonical' href='{$url}'/>"
     ));    
     if ($items) {
+      $count_ = $feed->get_channel_tags('', 'count');
+      $count = 0;
+      if (isset($count_[0]) && isset($count_[0]['data']))
+        $count = (int)$count_[0]['data'];
+      $this->pagination->initialize(array(
+        'base_url' => current_url() . '?',
+        'total_rows' => (int)$count,
+        'per_page' => 10,
+        'page_query_string' => true,
+        'query_string_segment' => 'p'
+      ));
       $this->load->view('news/index.php', array('items' => $items));
     }
     $this->_load_footer();

@@ -12,6 +12,8 @@ class Simplepieloader {
   }
   public function feed($url) {
     $feed = new SimplePie();
+  
+    $feed->strip_attributes(false);
     $feed->set_cache_location($this->path . $this->cache);
     $feed->set_cache_duration(60*60*8);
     $feed->set_feed_url($url);
