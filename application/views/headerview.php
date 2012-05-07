@@ -43,7 +43,7 @@
   <div class='content'>
 
     <div class='page'>
-    <!--[if lt IE 8]>
+    <!--[if lte IE 8]>
       <div class='browser-warning' style='margin-top:65px'>
         You appear to be using a very old browser, which may not be capable of
         rendering everything on this site correctly.

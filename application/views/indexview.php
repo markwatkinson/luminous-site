@@ -52,12 +52,16 @@ if (navigator.appName != 'Microsoft Internet Explorer') {
     RSS
   </a>
   <section>
+    <div class='col-1'>
     <?php 
       $feed = $this->simplepieloader->feed($news_rss);
-      $feed_limit = 10;
       foreach($feed->get_items() as $i=>$item):
-        if ($i >= $feed_limit) break;
-      ?>
+        if ($i === 2):      
+        ?>
+          </div>
+          <div class='col-2'>
+          <h3>Archives</h3>
+      <?php endif ?>
       <article class='news-<?=$i?>'>
         <div class='header'>
           <span class='date'> <?= $item->get_date('jS F Y') ?> </span>
@@ -74,6 +78,7 @@ if (navigator.appName != 'Microsoft Internet Explorer') {
         </div>
       </article>
     <?php endforeach ?>
+    </div>
   </section>
 </div>
 

@@ -323,25 +323,28 @@ div.luminous a.line_number {
   display: none;
 }
 
-.news-0 .content,
-.news-1 .content {
+
+.news .col-1 { 
+  width: 55%;
+  margin-right: 5%;
+  float: left;
+}
+.news .col-2 {
+  width: 40%;
+  float: left;
+}
+.news .col-1 .content {
   display: block;
 }
 
-.news article {
-  width: 48%;
-  float: left;
+.news .col-2 h3 {
+  padding: 0;
+  margin: 0 0 1em 0;
+  text-align: center;
 }
-.news article:nth-child(odd) {
-  margin-right: 4%;
+.news .col-2 .header {
 }
 
-.news article.news-0,
-.news article.news-1 {
-  width: auto;
-  float: none;
-  margin: 0;
-}
 .news::after {
   display: block;
   clear: both;
