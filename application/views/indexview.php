@@ -52,17 +52,19 @@ if (navigator.appName != 'Microsoft Internet Explorer') {
     RSS
   </a>
   <section>
-    <div class='col-1'>
+    <div class='col col-1'>
+    <h3>Current</h3>
     <?php 
       $feed = $this->simplepieloader->feed($news_rss);
-      foreach($feed->get_items() as $i=>$item):
-        if ($i === 2):      
-        ?>
+      $current = true;
+      for ($i=0; $i<$feed->get_item_quantity() ; /*empty*/ ):
+        $item = $feed->get_item($i);
+        if ($i === 0 && !$current):  // inject current news into col 1 ?>
           </div>
-          <div class='col-2'>
+          <div class='col col-2'>
           <h3>Archives</h3>
       <?php endif ?>
-      <article class='news-<?=$i?>'>
+      <article class='news-<?=$i?> <?=($i===0 && !$current)? 'active': ''?>'>
         <div class='header'>
           <span class='date'> <?= $item->get_date('jS F Y') ?> </span>
           -
@@ -73,11 +75,16 @@ if (navigator.appName != 'Microsoft Internet Explorer') {
         <div class='content'> 
           <?= $item->get_description() ?>
           <p>
-            <a href='<?= news_url($item->get_permalink()) ?>'>Read more</a>
-          </p>
+          <a class='more button' href='<?= news_url($item->get_permalink()) ?>'><span>Read more</span></a>
         </div>
       </article>
-    <?php endforeach ?>
+      <?php 
+        // we need to duplicate the first entry into col2
+        // so proceed only if current is false
+        if ($current) $current = false;
+        else $i++;
+       ?>
+    <?php endfor ?>
     </div>
   </section>
 </div>
