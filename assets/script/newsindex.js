@@ -9,7 +9,9 @@
       $clicker = $('<span class="expander">&nbsp;</span>'),
       selectorClickFunc = function (ev) {
         var $this = $(this);
-                
+        
+        if ($this.hasClass(activeClass)) return;
+        
         $contentArea.find('article').fadeOut(animLength, function () {
           var $el = $this.clone(false)
             .attr('style', '')
