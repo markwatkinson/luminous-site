@@ -78,3 +78,32 @@ div.index-button a:hover {
   /* for IE */
   text-decoration: none;
 }
+
+
+/* really need to standardise this */
+.button a, 
+a.button,
+.button span {
+  color: #555;
+  transition: color 0.5s;
+  -moz-transition: color 0.5s;
+  -webkit-transition: color 0.5s;
+  -o-transition: color 0.5s;
+}
+
+.button:hover
+.button:hover a,
+.button:hover span {
+  color: #333;
+}
+
+.button img {
+  opacity: 0.7;
+  transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;  
+}
+.button:hover img {
+  opacity: 1;
+}
