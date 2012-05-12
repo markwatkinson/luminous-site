@@ -49,6 +49,8 @@ div.page {
   padding-bottom: 2em; 
   border-radius: 1em;
 /*   box-shadow: 5px 0px 20px #ddd; */
+  z-index: 1;
+  position: relative;
 }
 
 div.footer {
@@ -356,9 +358,19 @@ div.luminous a.line_number {
   background-color: #ccc;
   border-color: #888;
 }
+ /* javascript responds to a click event */
+.news .col-2 article.js {
+  cursor: pointer; 
+}
+.news .col-2 article.js:hover .header {
+  background-color: #f0f0f0;
+}
 .news .col-1 .content {
   display: block;
 }
+
+
+
 
 .news .col h3 {
   padding: 0;

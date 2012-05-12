@@ -27,6 +27,8 @@
         
       };
     $selectors.click(selectorClickFunc);
+    $selectors.addClass('js');
     $selectors.eq(0).click();
+    
   });
 }(jQuery));
