@@ -93,6 +93,10 @@ div.menu-bar  a {
   border-radius: 0 1em 1em 0em;
   text-shadow: #80B3FF 0px 0px 10px;
   font-weight: bold;
+  transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }
 div.menu-bar  a.page-active {
   background-color: black;
@@ -101,16 +105,21 @@ div.menu-bar  a.page-active {
 div.menu-bar  a:hover {
   text-decoration: none;
   text-shadow: none;
+  color: #FEA4A4;
 }
 
 
 a {
   text-decoration: none;
   color: #BF0303;
-  cursor: default;
+  transition: color 0.5s ease-in-out;
+  -o-transition: color 0.5s ease-in-out;
+  -webkit-transition: color 0.5s ease-in-out;
+  -moz-transition: color 0.5s ease-in-out;
+  -ms-transition: color 0.5s ease-in-out;
 }
 a:hover {
-  text-decoration: underline;
+  color: #FB8004;
 }
 
 
