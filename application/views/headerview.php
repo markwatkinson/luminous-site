@@ -41,7 +41,7 @@
     </div>
   </div>
   <div class='content'>
-
+  <a href="https://github.com/markwatkinson/luminous" target=_blank><img class='fork-me' src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
     <div class='page'>
     <!--[if lte IE 8]>
       <div class='browser-warning' style='margin-top:65px'>
