@@ -369,6 +369,13 @@ div.luminous a.line_number {
   display: block;
 }
 
+.news .col-1 .expander {
+  display: none;
+}
+.news .col-2 .expander {
+  float: right;
+}
+
 
 
 
@@ -507,3 +514,20 @@ dd {
   font-size: smaller;
 }
 
+
+
+/* clickers on accordions/similar */
+.expander {
+  width: 15px;
+  height: 15px;
+  content: " ";
+  background: transparent url(assets/plus.png) 0 0 no-repeat;
+  transition: background-position 0.5s ease-in-out;
+  -moz-transition: background-position 0.5s ease-in-out;
+  -webkit-transition: background-position 0.5s ease-in-out;
+  -ms-transition: background-position 0.5s ease-in-out;
+  -o-transition: background-position 0.5s ease-in-out;
+}
+.active .expander {
+  background-position: 0 -16px;
+}

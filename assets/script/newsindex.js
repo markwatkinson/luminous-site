@@ -6,6 +6,7 @@
       $selectors = $('.news .col-2 > article'),
       activeClass = 'active',
       animLength = 200,
+      $clicker = $('<span class="expander">&nbsp;</span>'),
       selectorClickFunc = function (ev) {
         var $this = $(this);
                 
@@ -23,9 +24,13 @@
 
         $this.addClass(activeClass);
         ev.preventDefault();
-        return true;
-        
+        return true;        
       };
+
+    $selectors.each(function() {
+      $(this).find('.header').append($clicker.clone());
+    });
+      
     $selectors.click(selectorClickFunc);
     $selectors.addClass('js');
     $selectors.eq(0).click();
