@@ -38,7 +38,6 @@ div.content {
   width: 95%;
   margin: 1em auto;
   margin-top: 65px; 
-
 }
 
 div.page {
@@ -136,8 +135,6 @@ div.submenu, div.hierarchy {
   margin-bottom: 1em;
 }
 div.submenu {
-/*   font-weight: bold; */
-/*   margin-top: 80px; */
 }
 
 span.inline-code {
