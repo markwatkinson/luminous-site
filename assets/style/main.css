@@ -383,9 +383,26 @@ div.luminous a.line_number {
 .js .news .col-1 article {
   float: left;
   margin-right: 20px;
+  overflow: hidden;
 }
 .news .col-1 .content {
   display: block;
+}
+
+/* slide effects */
+.js .news .scroller {
+  transition: left 0.5s ease-in-out;
+  -webkit-transition: left 0.5s ease-in-out;
+  -moz-transition: left 0.5s ease-in-out;
+  -o-transition: left 0.5s ease-in-out;
+  -ms-transition: left 0.5s ease-in-out;
+}
+.js .news .col-1 {
+  transition: height 0.5s ease-in-out;
+  -webkit-transition: height 0.5s ease-in-out;
+  -moz-transition: height 0.5s ease-in-out;
+  -o-transition: height 0.5s ease-in-out;
+  -ms-transition: height 0.5s ease-in-out;
 }
 
 .news .col-1 .expander {
