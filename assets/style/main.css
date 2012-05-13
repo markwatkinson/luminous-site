@@ -343,10 +343,16 @@ div.luminous a.line_number {
   width: 55%;
   margin-right: 5%;
   float: left;
+  position: relative;
+  overflow: hidden;
 }
 .news .col-2 {
   width: 40%;
   float: left;
+}
+
+.news .col-1 .scroller {
+  position: absolute;
 }
 
 .news .col-2 .header {
@@ -361,17 +367,22 @@ div.luminous a.line_number {
   border-color: #888;
 }
  /* javascript responds to a click event */
-.news .col-2 article.js {
+.js .news .col-2 article {
   cursor: pointer; 
 }
-.news .col-2 article.js:hover .header {
+.js .news .col-2 article:hover .header {
   background-color: #bbb;
   border-color: #666;
 }
 /* no hover event for the active element */
-.news .col-2 article.js.active:hover .header {
+.js .news .col-2 article.active:hover .header {
   background-color: #ccc;
   cursor: default;
+}
+
+.js .news .col-1 article {
+  float: left;
+  margin-right: 20px;
 }
 .news .col-1 .content {
   display: block;
