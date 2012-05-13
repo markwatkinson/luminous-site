@@ -28,7 +28,7 @@ class Demo extends MY_Controller {
     $theme = $this->session->userdata('theme');
     $data['theme'] = $theme? $theme : null;
     parent::_load_header($data);
-    $this->load->view('demoheaderview.php');
+    $this->load->view('demo/header.php');
   }
 
 
@@ -39,7 +39,7 @@ class Demo extends MY_Controller {
     $data = array();
     if (($d = $this->Demorecord_model->description)) $data['title'] = $d;
     $this->_load_header($data);
-    $this->load->view('demooutview.php',
+    $this->load->view('demo/highlighted.php',
       array('demo' => $this->Demorecord_model)
     );
     $this->_load_footer();
@@ -85,7 +85,7 @@ class Demo extends MY_Controller {
       'uri_segment' => 6,
     ));
 
-    $this->load->view('demolistview.php', 
+    $this->load->view('demo/index.php', 
       array('demos'=> $demos, 
       'language' => $language_,
       'page' => $offset,
@@ -103,7 +103,7 @@ class Demo extends MY_Controller {
 
   public function _do_paste_or_edit($errors=array()) {
     $this->_load_header();
-    $this->load->view('demoview.php',
+    $this->load->view('demo/paste.php',
       array('demo' => $this->Demorecord_model,
         'errors' => $errors
         )
@@ -183,7 +183,7 @@ class Demo extends MY_Controller {
     else {
       // otherwise this is just a one off
       $this->_load_header();
-      $this->load->view('demooutview.php',
+      $this->load->view('demo/highlighted.php',
         array('demo' => $this->Demorecord_model));
       $this->_load_footer();
     }
@@ -220,7 +220,7 @@ class Demo extends MY_Controller {
     if ($id === false) {
       // we don't want the overloaded version
       parent::_load_header();
-      $this->load->view('demoembedview.php');
+      $this->load->view('demo/embed.php');
       $this->_load_footer();
       return;
     }

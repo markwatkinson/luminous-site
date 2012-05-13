@@ -66,7 +66,3 @@ $(document).ready(function() {
 <?php endif; ?>
 <p>
 <?= $demo->highlighted; ?>
-
-
-
-
