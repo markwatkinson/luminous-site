@@ -363,7 +363,13 @@ div.luminous a.line_number {
   cursor: pointer; 
 }
 .news .col-2 article.js:hover .header {
-  background-color: #f0f0f0;
+  background-color: #bbb;
+  border-color: #666;
+}
+/* no hover event for the active element */
+.news .col-2 article.js.active:hover .header {
+  background-color: #ccc;
+  cursor: default;
 }
 .news .col-1 .content {
   display: block;
@@ -374,6 +380,9 @@ div.luminous a.line_number {
 }
 .news .col-2 .expander {
   float: right;
+}
+.news .col-2 .header:hover .expander {
+  -webkit-transform: scale(1);
 }
 
 
@@ -523,10 +532,17 @@ dd {
   content: " ";
   background: transparent url(assets/plus.png) 0 0 no-repeat;
   transition: background-position 0.5s ease-in-out;
-  -moz-transition: background-position 0.5s ease-in-out;
-  -webkit-transition: background-position 0.5s ease-in-out;
-  -ms-transition: background-position 0.5s ease-in-out;
-  -o-transition: background-position 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -ms-transition:all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  
+  
+  transform: scale(0.85);
+  -moz-transform: scale(0.85);
+  -webkit-transform: scale(0.85);
+  -ms-transform: scale(0.85);
+  -o-transform: scale(0.85);
 }
 .active .expander {
   background-position: 0 -16px;

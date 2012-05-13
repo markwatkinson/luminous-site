@@ -10,23 +10,23 @@
       selectorClickFunc = function (ev) {
         var $this = $(this);
         
-        if ($this.hasClass(activeClass)) return;
-        
-        $contentArea.find('article').fadeOut(animLength, function () {
-          var $el = $this.clone(false)
-            .attr('style', '')
-            .hide();
-          $(this).replaceWith($el);
-          $el.fadeIn(animLength);
-         });
+        if (!$this.hasClass(activeClass) && ev.which === 1) {        
+          $contentArea.find('article').fadeOut(animLength, function () {
+            var $el = $this.clone(false)
+              .attr('style', '')
+              .hide();
+            $(this).replaceWith($el);
+            $el.fadeIn(animLength);
+           });
 
-        $selectors
-          .filter('.' + activeClass)
-          .removeClass(activeClass)
+          $selectors
+            .filter('.' + activeClass)
+            .removeClass(activeClass)
 
-        $this.addClass(activeClass);
-        ev.preventDefault();
-        return true;        
+          $this.addClass(activeClass);
+          ev.preventDefault();
+          return true;
+        }
       };
 
     $selectors.each(function() {
