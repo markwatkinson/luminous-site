@@ -353,6 +353,8 @@ div.luminous a.line_number {
   -webkit-transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
+  position: relative; /* for expander */
+  padding-right: 20px; /* for expander */
 }
 .news .col-2 .active .header {
   background-color: #ccc;
@@ -379,7 +381,9 @@ div.luminous a.line_number {
   display: none;
 }
 .news .col-2 .expander {
-  float: right;
+  position: absolute;
+  top: 3px;
+  right: 5px;
 }
 .news .col-2 .header:hover .expander {
   -webkit-transform: scale(1);
